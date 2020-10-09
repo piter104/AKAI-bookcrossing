@@ -1,11 +1,11 @@
 version: '2.0'
 services:
-  spring:
-    build:
-      dockerfile: Dockerfile
-      context: .
-    ports:
-      - "8080:8080"
+#  spring:
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+#    ports:
+#      - "8080:8080"
   db:
     image: mysql:8
     environment:
@@ -13,3 +13,5 @@ services:
       - MYSQL_DATABASE=bookcrossing
       - MYSQL_USER=sa
       - MYSQL_PASSWORD=q1w2e3r4
+    ports:
+         - "3306:3306"

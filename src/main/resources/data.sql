@@ -1,0 +1,1 @@
+INSERT INTO bookcrossing.tb_book VALUES (1, 'aaa');
