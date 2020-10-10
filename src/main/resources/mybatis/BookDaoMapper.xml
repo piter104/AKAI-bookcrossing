@@ -4,12 +4,25 @@
 
     <resultMap id="baseBookMap" type="pl.akai.bookcrossing.model.Book" >
         <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
     </resultMap>
 
-    <select id="findFirstBookWithId" resultMap="baseBookMap">
+    <select id="getAllBooks" resultMap="baseBookMap">
+        select * from tb_book
+    </select>
+
+    <select id="getBookById" resultMap="baseBookMap">
         select * from tb_book
         where id = #{id}
-        limit 1
     </select>
+
+    <insert id="insertBook">
+        INSERT INTO tb_book (title, author, description, owner_id)
+        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.ownerId});
+    </insert>
+
+
 </mapper>

@@ -1,1 +1,2 @@
-INSERT INTO bookcrossing.tb_book VALUES (1, 'aaa');
+INSERT INTO bookcrossing.tb_book (title, author, description)
+VALUES ('Czysty kod. Podręcznik dobrego programisty', 'Robert C. Martin', 'Bardzo ważna książka');
