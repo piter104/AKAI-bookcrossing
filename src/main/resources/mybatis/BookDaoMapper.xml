@@ -24,5 +24,4 @@
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.ownerId});
     </insert>
 
-
 </mapper>
