@@ -28,6 +28,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void insertBook(Book book) {
+
         bookMapper.insertBook(book);
     }
 }
