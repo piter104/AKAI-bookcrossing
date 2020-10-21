@@ -12,3 +12,11 @@ CREATE TABLE IF NOT EXISTS tb_user (
      firstName VARCHAR(255),
      lastName VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS tb_opinion (
+     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+     rating INT NOT NULL,
+     description TEXT,
+     bookId INT NOT NULL,
+     authorId INT NOT NULL
+);
