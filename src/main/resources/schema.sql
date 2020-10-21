@@ -6,3 +6,9 @@ CREATE TABLE IF NOT EXISTS tb_book(
     owner_id INT,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS tb_user (
+     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+     firstName VARCHAR(255),
+     lastName VARCHAR(255)
+);
