@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS tb_book(
 CREATE TABLE IF NOT EXISTS tb_user (
      id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
      firstName VARCHAR(255),
-     surname VARCHAR(255)
+     lastName VARCHAR(255)
 );
