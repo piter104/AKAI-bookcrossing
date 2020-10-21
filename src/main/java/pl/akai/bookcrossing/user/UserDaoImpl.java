@@ -1,13 +1,10 @@
 package pl.akai.bookcrossing.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.User;
-import pl.akai.bookcrossing.user.UserDao;
-import pl.akai.bookcrossing.user.UserDaoMapper;
 
-@Component
+@Repository
 public class UserDaoImpl implements UserDao {
 
     private final UserDaoMapper userMapper;
