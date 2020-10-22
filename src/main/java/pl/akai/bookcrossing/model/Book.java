@@ -11,4 +11,5 @@ public class Book {
     private String author;
     private String description;
     private Integer ownerId;
+    private Integer currentOwnerId;
 }

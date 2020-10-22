@@ -4,17 +4,18 @@
 
     <resultMap id="baseUserMap" type="pl.akai.bookcrossing.model.User">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="firstName" property="firstName" jdbcType="VARCHAR"/>
-        <result column="lastName" property="lastName" jdbcType="VARCHAR"/>
+        <result column="first_name" property="firstName" jdbcType="VARCHAR"/>
+        <result column="last_name" property="lastName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getUserById" resultMap="baseUserMap">
-        SELECT * FROM tb_user
+        SELECT *
+        FROM tb_user
         WHERE id = #{id}
     </select>
 
     <insert id="insertUser">
-        INSERT INTO tb_user (firstName, lastName)
+        INSERT INTO tb_user (first_name, last_name)
         VALUES (#{user.firstName}, #{user.lastName});
     </insert>
 

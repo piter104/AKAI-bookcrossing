@@ -6,23 +6,27 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="rating" property="rating" jdbcType="INTEGER"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
-        <result column="bookId" property="bookId" jdbcType="INTEGER"/>
-        <result column="authorId" property="authorId" jdbcType="INTEGER"/>
+        <result column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="author_id" property="authorId" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getOpinionById" resultMap="baseUserMap">
-        SELECT * FROM tb_opinion
+        SELECT *
+        FROM tb_opinion
         WHERE id = #{id}
     </select>
 
     <insert id="insertOpinion">
-        INSERT INTO tb_opinion (rating, description, bookId, authorId)
+        INSERT INTO tb_opinion (rating, description, book_id, author_id)
         VALUES (#{opinion.rating}, #{opinion.description}, #{opinion.bookId}, #{opinion.authorId});
     </insert>
 
     <update id="updateOpinion">
         UPDATE tb_opinion
-        SET rating = #{opinion.rating}, description = #{opinion.description}, bookId = #{opinion.bookId}, authorId = #{opinion.authorId}
+        SET rating      = #{opinion.rating},
+            description = #{opinion.description},
+            book_id     = #{opinion.bookId},
+            author_id   = #{opinion.authorId}
         WHERE id = #{opinion.id});
     </update>
 

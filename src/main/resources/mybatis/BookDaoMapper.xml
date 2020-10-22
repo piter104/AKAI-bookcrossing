@@ -2,25 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pl.akai.bookcrossing.list.BookDaoMapper">
 
-    <resultMap id="baseBookMap" type="pl.akai.bookcrossing.model.Book" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="title" property="title" jdbcType="VARCHAR" />
-        <result column="author" property="author" jdbcType="VARCHAR" />
-        <result column="description" property="description" jdbcType="VARCHAR" />
-        <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <resultMap id="baseBookMap" type="pl.akai.bookcrossing.model.Book">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER"/>
+        <result column="current_owner_id" property="currentOwnerId" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="getAllBooks" resultMap="baseBookMap">
-        select * from tb_book
+        select *
+        from tb_book
     </select>
 
     <select id="getBookById" resultMap="baseBookMap">
-        select * from tb_book
+        select *
+        from tb_book
         where id = #{id}
     </select>
 
     <insert id="insertBook">
-        INSERT INTO tb_book (title, author, description, owner_id)
+        INSERT INTO tb_book (title, author, description, owner_id, current_owner_id)
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.ownerId});
     </insert>
 
