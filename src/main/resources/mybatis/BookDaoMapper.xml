@@ -12,14 +12,14 @@
     </resultMap>
 
     <select id="getAllBooks" resultMap="baseBookMap">
-        select *
-        from tb_book
+        SELECT *
+        FROM tb_book
     </select>
 
     <select id="getBookById" resultMap="baseBookMap">
-        select *
-        from tb_book
-        where id = #{id}
+        SELECT * 
+        FROM tb_book
+        WHERE id = #{id}
     </select>
 
     <insert id="insertBook">

@@ -1,12 +1,12 @@
 package pl.akai.bookcrossing.list;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Book;
 
 import java.util.List;
 
-@Service
+@Repository
 public class BookDaoImpl implements BookDao {
 
     private final BookDaoMapper bookMapper;
