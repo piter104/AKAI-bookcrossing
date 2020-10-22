@@ -13,6 +13,7 @@
         <th>Autor</th>
         <th>Opis</th>
         <th>Właściciel</th>
+        <th>Obecny Właściciel</th>
     </tr>
     <tr th:each="book : ${books}">
         <td th:text="${book.id}">ID</td>
@@ -20,6 +21,7 @@
         <td th:text="${book.author}">Autor</td>
         <td th:text="${book.description}">Opis</td>
         <td th:text="${book.ownerId}">Właściciel</td>
+        <td th:text="${book.currentOwnerId}">Obecny Właściciel</td>
     </tr>
 </table>
 </body>
