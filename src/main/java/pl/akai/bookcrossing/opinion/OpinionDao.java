@@ -1,9 +1,9 @@
 package pl.akai.bookcrossing.opinion;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Opinion;
 
-@Service
+@Repository
 public interface OpinionDao {
 
     Opinion getOpinionsByBookId(int bookId);

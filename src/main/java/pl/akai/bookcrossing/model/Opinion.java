@@ -10,5 +10,5 @@ public class Opinion {
     private int rating;
     private String description;
     private int bookId;
-    private  int authorId;
+    private int authorId;
 }
