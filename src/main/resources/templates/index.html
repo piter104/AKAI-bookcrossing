@@ -20,10 +20,9 @@
         <td th:text="${book.title}">Tytuł</td>
         <td th:text="${book.author}">Autor</td>
         <td th:text="${book.description}">Opis</td>
-        <td th:text="${book.ownerId}">Właściciel</td>
-        <td th:text="${book.currentOwnerId}">Obecny Właściciel</td>
+        <td th:text="${book.owner.lastName}">Właściciel</td>
+        <td th:text="${book.reader.lastName}">Obecny Właściciel</td>
     </tr>
 </table>
 </body>
 </html>
-

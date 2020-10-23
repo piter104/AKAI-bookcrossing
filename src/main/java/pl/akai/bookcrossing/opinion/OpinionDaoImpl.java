@@ -3,6 +3,8 @@ package pl.akai.bookcrossing.opinion;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.akai.bookcrossing.model.Opinion;
 
+import java.util.List;
+
 public class OpinionDaoImpl implements OpinionDao {
 
     private final OpinionDaoMapper opinionMapper;
@@ -13,13 +15,13 @@ public class OpinionDaoImpl implements OpinionDao {
     }
 
     @Override
-    public Opinion getOpinionsByBookId(int bookId) {
-        return opinionMapper.getOpinionsById(bookId);
+    public List<Opinion> getOpinionsByBookId(int bookId) {
+        return opinionMapper.getOpinionsByBookId(bookId);
     }
 
     @Override
-    public void insertOpinion(Opinion opinion) {
-        opinionMapper.insertOpinion(opinion);
+    public void insertOpinion(Opinion opinion, int bookId) {
+        opinionMapper.insertOpinion(opinion, bookId);
     }
 
     @Override
