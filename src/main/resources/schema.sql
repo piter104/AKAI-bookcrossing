@@ -11,10 +11,10 @@ CREATE TABLE IF NOT EXISTS tb_book(
     author VARCHAR (255) NOT NULL,
     description TEXT,
     owner_id INT,
-    current_owner_id INT,
+    reader_id INT,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES tb_user(id),
-    FOREIGN KEY (current_owner_id) REFERENCES tb_user(id)
+    FOREIGN KEY (reader_id) REFERENCES tb_user(id)
 );
 
 CREATE TABLE IF NOT EXISTS tb_opinion (
