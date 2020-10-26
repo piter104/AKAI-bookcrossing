@@ -20,7 +20,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void insertNewUser(User user) {
-        userMapper.insertNewUser(user);
+    public User getUserByEmail(String email) {
+        return this.userMapper.getUserByEmail(email);
     }
+
+    @Override
+    public void insertNewUser(User user) {
+        userMapper.insertUser(user);
+    }
+
+
 }

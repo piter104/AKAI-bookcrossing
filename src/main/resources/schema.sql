@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS tb_user(
     id INT AUTO_INCREMENT NOT NULL,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
+    full_name VARCHAR(255),
+    email VARCHAR(255),
     PRIMARY KEY (id)
 );
 

@@ -9,5 +9,7 @@ public interface UserDaoMapper {
 
     User getUserById(@Param("id") int id);
 
-    void insertNewUser(@Param("user") User user);
+    User getUserByEmail(@Param("email") String email);
+
+    void insertUser(@Param("user") User user);
 }

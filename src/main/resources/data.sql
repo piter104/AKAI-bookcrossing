@@ -1,5 +1,5 @@
-INSERT INTO bookcrossing.tb_user (first_name, last_name)
-VALUES ('Adam', 'Nowak');
+INSERT INTO bookcrossing.tb_user (full_name, email)
+VALUES ('Adam Nowak', 'adam.nowak@akai.org.pl');
 
 INSERT INTO bookcrossing.tb_book (title, author, description, owner_id, reader_id)
 VALUES ('Czysty kod. Podręcznik dobrego programisty', 'Robert C. Martin', 'Bardzo ważna książka', 1, 1);
