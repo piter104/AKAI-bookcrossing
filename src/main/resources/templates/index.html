@@ -22,8 +22,8 @@
         <td th:text="${book.title}">Tytuł</td>
         <td th:text="${book.author}">Autor</td>
         <td th:text="${book.description}">Opis</td>
-        <td th:text="${book.owner.fullName}">Właściciel</td>
-        <td th:text="${book.reader.fullName}">Obecny Właściciel</td>
+        <td th:text="${book.owner?.fullName}">Właściciel</td>
+        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
     </tr>
 </table>
 
