@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>td { border: 1px solid black; }</style>
+    <style>td {
+        border: 1px solid black;
+    }</style>
 </head>
 <body>
 <table>
@@ -20,9 +22,13 @@
         <td th:text="${book.title}">Tytuł</td>
         <td th:text="${book.author}">Autor</td>
         <td th:text="${book.description}">Opis</td>
-        <td th:text="${book.owner.lastName}">Właściciel</td>
-        <td th:text="${book.reader.lastName}">Obecny Właściciel</td>
+        <td th:text="${book.owner.fullName}">Właściciel</td>
+        <td th:text="${book.reader.fullName}">Obecny Właściciel</td>
     </tr>
 </table>
+
+<div th:text="${name}"></div>
+<a href="/logout">Logout</a>
+
 </body>
 </html>
