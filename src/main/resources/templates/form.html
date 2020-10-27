@@ -6,10 +6,10 @@
 </head>
 <body>
 <h1>Formularz Dodania Książki</h1>
-<form action="#" th:action="@{/form}" th:object="${book}" method="post">
-    <p>Tytuł: <input type="text" th:field="*{title}"/></p>
-    <p>Autor: <input type="text" th:field="*{author}"/></p>
-    <p>Opis: <input type="text" th:field="*{description}"/></p>
+<form action="#" method="post" th:action="@{/book/add}" th:object="${book}">
+    <p>Tytuł: <input required th:field="*{title}" type="text"/></p>
+    <p>Autor: <input required th:field="*{author}" type="text"/></p>
+    <p>Opis: <input required th:field="*{description}" type="textArea"/></p>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
 </body>
