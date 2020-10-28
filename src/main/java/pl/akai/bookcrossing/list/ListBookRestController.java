@@ -9,16 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.opinion.OpinionDao;
 
 @Controller
 public class ListBookRestController {
 
     private final BookDao bookDao;
+    private final OpinionDao opinionDao;
     private BookInsertBean bookInsertBean;
 
     @Autowired
-    public ListBookRestController(BookDao bookDao, BookInsertBean bookInsertBean) {
+    public ListBookRestController(BookDao bookDao, OpinionDao opinionDao, BookInsertBean bookInsertBean) {
         this.bookDao = bookDao;
+        this.opinionDao = opinionDao;
         this.bookInsertBean = bookInsertBean;
     }
 
@@ -43,4 +46,12 @@ public class ListBookRestController {
         bookInsertBean.bookInsertion(book);
         return "formResult";
     }
+
+    @GetMapping("/book/details")
+    public String bookDetails(Model model, Integer bookId) {
+        model.addAttribute("book", bookDao.findBookById(bookId));
+        model.addAttribute("opinions", opinionDao.getOpinionsByBookId(bookId));
+        return "details";
+    }
+
 }

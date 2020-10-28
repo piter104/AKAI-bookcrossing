@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CustomOAuth2User;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.User;
 import pl.akai.bookcrossing.user.UserDao;
 
 @Component
@@ -23,7 +24,9 @@ public class BookInsertBean {
     public void bookInsertion(Book book) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
-        book.setOwner(userDao.getUserByEmail(oAuth2User.getEmail()));
+        String email = oAuth2User.getEmail();
+        User user = userDao.getUserByEmail(email);
+        book.setOwner(user);
         bookDao.insertBook(book);
     }
 }

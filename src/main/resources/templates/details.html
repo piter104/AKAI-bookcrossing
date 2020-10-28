@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        p {
+            word-wrap: break-word;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Szczegóły książki</title>
+</head>
+<body>
+<h2 th:text="${book.title}"/>
+<p th:text="'Autor: ' + ${book.author}"/>
+<p th:text="'Opis: ' + ${book.description}"/>
+<h3>Oceny</h3>
+<table>
+    <tr>
+        <th>Użytkownik</th>
+        <th>Ocena</th>
+        <th>Opis</th>
+    </tr>
+    <tr th:each="opinion : ${opinions}">
+        <td th:text="${opinion.author}">Użytkownik</td>
+        <td th:text="${opinion.rating}">Ocena</td>
+        <td th:text="${opinion.description}">Opis</td>
+    </tr>
+</table>
+</body>
+</html>
