@@ -9,16 +9,18 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.user.UserDao;
 
 @Component
-public class BookAddHandler {
+public class BookInsertBean {
 
     private final UserDao userDao;
+    private final BookDao bookDao;
 
     @Autowired
-    public BookAddHandler(UserDao userDao) {
+    public BookInsertBean(UserDao userDao, BookDao bookDao) {
         this.userDao = userDao;
+        this.bookDao = bookDao;
     }
 
-    public void bookInsertion(Book book, BookDao bookDao) {
+    public void bookInsertion(Book book) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
         book.setOwner(userDao.getUserByEmail(oAuth2User.getEmail()));

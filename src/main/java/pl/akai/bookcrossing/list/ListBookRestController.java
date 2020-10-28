@@ -14,12 +14,12 @@ import pl.akai.bookcrossing.model.Book;
 public class ListBookRestController {
 
     private final BookDao bookDao;
-    private BookAddHandler bookAddHandler;
+    private BookInsertBean bookInsertBean;
 
     @Autowired
-    public ListBookRestController(BookDao bookDao, BookAddHandler bookAddHandler) {
+    public ListBookRestController(BookDao bookDao, BookInsertBean bookInsertBean) {
         this.bookDao = bookDao;
-        this.bookAddHandler = bookAddHandler;
+        this.bookInsertBean = bookInsertBean;
     }
 
     @GetMapping("/")
@@ -40,7 +40,7 @@ public class ListBookRestController {
     @PostMapping("/book/add")
     public String bookSubmit(@ModelAttribute Book book, Model model) {
         model.addAttribute("book", book);
-        bookAddHandler.bookInsertion(book, bookDao);
+        bookInsertBean.bookInsertion(book);
         return "formResult";
     }
 }

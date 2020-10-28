@@ -9,7 +9,8 @@
 <form action="#" method="post" th:action="@{/book/add}" th:object="${book}">
     <p>Tytuł: <input required th:field="*{title}" type="text"/></p>
     <p>Autor: <input required th:field="*{author}" type="text"/></p>
-    <p>Opis: <input required th:field="*{description}" type="textArea"/></p>
+    <p>Opis: <textarea cols="33" id="description" name="description" rows="5">
+</textarea></p>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
 </body>
