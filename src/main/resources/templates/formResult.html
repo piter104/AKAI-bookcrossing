@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <style>
+        p {
+            word-wrap: break-word;
+        }
+    </style>
+    <title>Formularz Dodania Książki</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Dodana książka</h1>
+<p th:text="'Tytuł: ' + ${book.title}"/>
+<p th:text="'Autor: ' + ${book.author}"/>
+<p th:text="'Opis: ' + ${book.description}"/>
+<a href="/book/add">Dodaj kolejną</a>
+</body>
+</html>

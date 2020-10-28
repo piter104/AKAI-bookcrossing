@@ -6,15 +6,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import pl.akai.bookcrossing.model.Book;
 
 @Controller
 public class ListBookRestController {
 
     private final BookDao bookDao;
+    private BookInsertBean bookInsertBean;
 
     @Autowired
-    ListBookRestController(BookDao bookDao) {
+    public ListBookRestController(BookDao bookDao, BookInsertBean bookInsertBean) {
         this.bookDao = bookDao;
+        this.bookInsertBean = bookInsertBean;
     }
 
     @GetMapping("/")
@@ -24,5 +29,18 @@ public class ListBookRestController {
         model.addAttribute("name", currentPrincipalName);
         model.addAttribute("books", bookDao.findAllBooks());
         return "index";
+    }
+
+    @GetMapping("/book/add")
+    public String bookForm(Model model) {
+        model.addAttribute("book", new Book());
+        return "form";
+    }
+
+    @PostMapping("/book/add")
+    public String bookSubmit(@ModelAttribute Book book, Model model) {
+        model.addAttribute("book", book);
+        bookInsertBean.bookInsertion(book);
+        return "formResult";
     }
 }
