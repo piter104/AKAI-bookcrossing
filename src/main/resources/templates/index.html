@@ -25,7 +25,7 @@
         <td th:text="${book.description}">Opis</td>
         <td th:text="${book.owner?.fullName}">Właściciel</td>
         <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
-        <td><a href="/book/details">Szczegóły</a></td>
+        <td><a th:href="@{/book/details(id=${book.id})}">Szczegóły</a></td>
     </tr>
 </table>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <style>
         p {
@@ -16,12 +16,12 @@
 <h3>Oceny</h3>
 <table>
     <tr>
-        <th>Użytkownik</th>
+        <th>Uzytkownik</th>
         <th>Ocena</th>
         <th>Opis</th>
     </tr>
     <tr th:each="opinion : ${opinions}">
-        <td th:text="${opinion.author}">Użytkownik</td>
+        <td th:text="${opinion.author}">Uzytkownik</td>
         <td th:text="${opinion.rating}">Ocena</td>
         <td th:text="${opinion.description}">Opis</td>
     </tr>
