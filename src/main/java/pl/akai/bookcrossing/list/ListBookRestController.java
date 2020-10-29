@@ -48,7 +48,7 @@ public class ListBookRestController {
     public String bookSubmit(@ModelAttribute Book book, Model model) {
         model.addAttribute("book", book);
         bookInsertBean.bookInsertion(book);
-        return "formResult";
+        return "form-result";
     }
 
     @GetMapping("/book/{id}")
@@ -57,7 +57,7 @@ public class ListBookRestController {
         List<Opinion> opinions = opinionDao.getOpinionsByBookId(id);
         model.addAttribute("book", book);
         model.addAttribute("opinions", opinions);
-        return "details";
+        return "book-details";
     }
 
 }

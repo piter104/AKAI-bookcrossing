@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <style>
-        p {
-            word-wrap: break-word;
-        }
-    </style>
     <meta charset="UTF-8">
     <title>Szczegóły książki</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/book-details.css}"/>
 </head>
 <body>
 <h2 th:text="${book.title}"/>
