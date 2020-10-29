@@ -1,10 +1,12 @@
 package pl.akai.bookcrossing.opinion;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Opinion;
 
 import java.util.List;
 
+@Repository
 public class OpinionDaoImpl implements OpinionDao {
 
     private final OpinionDaoMapper opinionMapper;

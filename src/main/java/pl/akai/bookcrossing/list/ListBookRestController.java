@@ -7,18 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.Opinion;
+import pl.akai.bookcrossing.opinion.OpinionDao;
+
+import java.util.List;
 
 @Controller
 public class ListBookRestController {
 
     private final BookDao bookDao;
+    private final OpinionDao opinionDao;
     private BookInsertBean bookInsertBean;
 
     @Autowired
-    public ListBookRestController(BookDao bookDao, BookInsertBean bookInsertBean) {
+    public ListBookRestController(BookDao bookDao, OpinionDao opinionDao, BookInsertBean bookInsertBean) {
         this.bookDao = bookDao;
+        this.opinionDao = opinionDao;
         this.bookInsertBean = bookInsertBean;
     }
 
@@ -41,6 +48,16 @@ public class ListBookRestController {
     public String bookSubmit(@ModelAttribute Book book, Model model) {
         model.addAttribute("book", book);
         bookInsertBean.bookInsertion(book);
-        return "formResult";
+        return "form-result";
     }
+
+    @GetMapping("/book/{id}")
+    public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
+        Book book = bookDao.findBookById(id);
+        List<Opinion> opinions = opinionDao.getOpinionsByBookId(id);
+        model.addAttribute("book", book);
+        model.addAttribute("opinions", opinions);
+        return "book-details";
+    }
+
 }

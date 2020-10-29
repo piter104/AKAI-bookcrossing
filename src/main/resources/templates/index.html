@@ -16,6 +16,7 @@
         <th>Opis</th>
         <th>Właściciel</th>
         <th>Obecny Właściciel</th>
+        <th>Szczegóły</th>
     </tr>
     <tr th:each="book : ${books}">
         <td th:text="${book.id}">ID</td>
@@ -24,11 +25,12 @@
         <td th:text="${book.description}">Opis</td>
         <td th:text="${book.owner?.fullName}">Właściciel</td>
         <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
     </tr>
 </table>
 
 <div th:text="${name}"></div>
 <a href="/logout">Logout</a>
-
+<a th:href="@{/book/add}">Dodaj ksiażke</a>
 </body>
 </html>
