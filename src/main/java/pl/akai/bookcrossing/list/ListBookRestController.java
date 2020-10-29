@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
 import pl.akai.bookcrossing.opinion.OpinionDao;
@@ -51,8 +51,8 @@ public class ListBookRestController {
         return "formResult";
     }
 
-    @GetMapping("/book/details")
-    public String bookDetails(@RequestParam(name = "id") Integer id, Model model) {
+    @GetMapping("/book/{id}")
+    public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
         Book book = bookDao.findBookById(id);
         List<Opinion> opinions = opinionDao.getOpinionsByBookId(id);
         model.addAttribute("book", book);
