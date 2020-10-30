@@ -20,7 +20,7 @@ public class ListBookRestController {
 
     private final BookDao bookDao;
     private final OpinionDao opinionDao;
-    private BookInsertBean bookInsertBean;
+    private final BookInsertBean bookInsertBean;
 
     @Autowired
     public ListBookRestController(BookDao bookDao, OpinionDao opinionDao, BookInsertBean bookInsertBean) {
