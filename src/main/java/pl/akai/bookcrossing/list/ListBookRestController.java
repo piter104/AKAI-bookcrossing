@@ -21,12 +21,23 @@ public class ListBookRestController {
     private final BookDao bookDao;
     private final OpinionDao opinionDao;
     private final BookInsertBean bookInsertBean;
+    private final OpinionInsertBean opinionInsertBean;
 
     @Autowired
-    public ListBookRestController(BookDao bookDao, OpinionDao opinionDao, BookInsertBean bookInsertBean) {
+    public ListBookRestController(BookDao bookDao, OpinionDao opinionDao, BookInsertBean bookInsertBean, OpinionInsertBean opinionInsertBean) {
         this.bookDao = bookDao;
         this.opinionDao = opinionDao;
         this.bookInsertBean = bookInsertBean;
+        this.opinionInsertBean = opinionInsertBean;
+    }
+
+    private Model modelSetUp(Model model, Integer id) {
+        Book book = bookDao.findBookById(id);
+        List<Opinion> opinions = opinionDao.getOpinionsByBookId(id);
+        model.addAttribute("book", book);
+        model.addAttribute("opinions", opinions);
+        model.addAttribute("opinion", new Opinion());
+        return model;
     }
 
     @GetMapping("/")
@@ -53,11 +64,14 @@ public class ListBookRestController {
 
     @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
-        Book book = bookDao.findBookById(id);
-        List<Opinion> opinions = opinionDao.getOpinionsByBookId(id);
-        model.addAttribute("book", book);
-        model.addAttribute("opinions", opinions);
+        model = modelSetUp(model, id);
         return "book-details";
     }
 
+    @PostMapping("/book/{id}")
+    public String opinionSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute Opinion opinion, Model model) {
+        opinionInsertBean.opinionInsertion(opinion, id);
+        model = modelSetUp(model, id);
+        return "book-details";
+    }
 }
