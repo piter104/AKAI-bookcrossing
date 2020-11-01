@@ -42,6 +42,9 @@
 </textarea></p>
     <p><input type="submit" value="Dodaj"/> <input type="reset" value="Reset"/></p>
 </form>
+<div th:if="${isSendSuccess}">
+    <p>Udało Ci się dodać opinię!</p>
+</div>
 <a th:href="@{/}">Wroć do strony głównej</a>
 </body>
 </html>
