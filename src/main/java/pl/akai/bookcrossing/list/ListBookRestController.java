@@ -31,13 +31,12 @@ public class ListBookRestController {
         this.opinionInsertBean = opinionInsertBean;
     }
 
-    private Model modelSetUp(Model model, Integer id) {
+    private void modelSetUp(Model model, Integer id) {
         Book book = bookDao.findBookById(id);
         List<Opinion> opinions = opinionDao.getOpinionsByBookId(id);
         model.addAttribute("book", book);
         model.addAttribute("opinions", opinions);
         model.addAttribute("opinion", new Opinion());
-        return model;
     }
 
     @GetMapping("/")
@@ -64,14 +63,14 @@ public class ListBookRestController {
 
     @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
-        model = modelSetUp(model, id);
+        modelSetUp(model, id);
         return "book-details";
     }
 
     @PostMapping("/book/{id}")
     public String opinionSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute Opinion opinion, Model model) {
         opinionInsertBean.opinionInsertion(opinion, id);
-        model = modelSetUp(model, id);
+        modelSetUp(model, id);
         return "book-details";
     }
 }
