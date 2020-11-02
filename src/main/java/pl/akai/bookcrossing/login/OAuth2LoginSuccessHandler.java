@@ -5,7 +5,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.model.User;
-import pl.akai.bookcrossing.user.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

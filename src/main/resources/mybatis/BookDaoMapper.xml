@@ -10,8 +10,8 @@
     </resultMap>
 
     <resultMap id="fullBookMap" type="Book">
-        <association column="owner_id"  property="owner" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
-        <association column="reader_id"  property="reader" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
+        <association column="owner_id"  property="owner" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="reader_id"  property="reader" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
     </resultMap>
 
     <select id="getAllBooks" resultMap="fullBookMap">
@@ -23,6 +23,15 @@
         SELECT * 
         FROM tb_book
         WHERE id = #{id}
+    </select>
+
+    <select id="getInsertedBookIdByUserId" resultType="INTEGER">
+        SELECT b.id
+        FROM tb_book b
+        INNER JOIN tb_user u ON b.owner_id = u.id
+        WHERE u.id = #{user_id}
+        ORDER BY b.id DESC
+        LIMIT 1;
     </select>
 
     <insert id="insertBook">

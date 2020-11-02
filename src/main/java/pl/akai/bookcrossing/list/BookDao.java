@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface BookDao {
 
-    Book findBookById(int bookId);
+    Book getBookById(int bookId);
 
-    List<Book> findAllBooks();
+    List<Book> getAllBooks();
 
     void insertBook(Book book);
 
-
+    int getInsertedBookIdByUserId(int id);
 }

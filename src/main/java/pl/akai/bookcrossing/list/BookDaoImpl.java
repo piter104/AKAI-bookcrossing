@@ -17,18 +17,22 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book findBookById(int bookId) {
+    public Book getBookById(int bookId) {
         return bookMapper.getBookById(bookId);
     }
 
     @Override
-    public List<Book> findAllBooks() {
+    public List<Book> getAllBooks() {
         return bookMapper.getAllBooks();
     }
 
     @Override
     public void insertBook(Book book) {
-
         bookMapper.insertBook(book);
+    }
+
+    @Override
+    public int getInsertedBookIdByUserId(int id) {
+        return bookMapper.getInsertedBookIdByUserId(id);
     }
 }

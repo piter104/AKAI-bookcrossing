@@ -9,7 +9,7 @@
     </resultMap>
 
     <resultMap id="extendedOpinionMap" type="Opinion" extends="baseOpinionMap">
-        <association column="author_id"  property="author" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
+        <association column="author_id"  property="author" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
     </resultMap>
 
     <select id="getOpinionsByBookId" resultMap="extendedOpinionMap">
