@@ -9,7 +9,7 @@
         <result column="description" property="description" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="fullBookMap" type="Book">
+    <resultMap id="fullBookMap" extends="baseBookMap" type="Book">
         <association column="owner_id" property="owner" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="reader_id" property="reader" javaType="User"
