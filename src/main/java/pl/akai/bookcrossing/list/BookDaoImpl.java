@@ -38,7 +38,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getBooksByTagList(List<Tag> tagList) {
-        return bookMapper.getBooksByTagList(tagList);
+    public List<Tag> getTagsByBookId(int id) {
+        return bookMapper.getTagsByBookId(id);
     }
 }

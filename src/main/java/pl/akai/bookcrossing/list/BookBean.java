@@ -41,7 +41,7 @@ public class BookBean {
         return bookDao.getInsertedBookIdByUserId(user.getId());
     }
 
-    public List<Book> getBooksByTagList(List<Tag> tagList) {
-        return bookDao.getBooksByTagList(tagList);
+    public List<Tag> getTagsByBookId(int id) {
+        return bookDao.getTagsByBookId(id);
     }
 }

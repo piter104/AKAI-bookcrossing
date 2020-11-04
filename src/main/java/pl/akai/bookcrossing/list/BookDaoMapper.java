@@ -19,5 +19,5 @@ public interface BookDaoMapper {
 
     void insertBook(@Param("book") Book book);
 
-    List<Book> getBooksByTagList(@Param("tag_list") List<Tag> tagList);
+    List<Tag> getTagsByBookId(@Param("id") int id);
 }
