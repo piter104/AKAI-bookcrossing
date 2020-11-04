@@ -17,13 +17,28 @@ CREATE TABLE IF NOT EXISTS tb_book(
     FOREIGN KEY (reader_id) REFERENCES tb_user(id)
 );
 
-CREATE TABLE IF NOT EXISTS tb_opinion (
-     id INT AUTO_INCREMENT NOT NULL,
-     rating INT NOT NULL,
-     description TEXT,
-     book_id INT NOT NULL,
-     author_id INT NOT NULL,
-     PRIMARY KEY(id),
-     FOREIGN KEY(book_id) REFERENCES tb_book(id),
-     FOREIGN KEY(author_id) REFERENCES tb_user(id)
+CREATE TABLE IF NOT EXISTS tb_opinion(
+                                         id          INT AUTO_INCREMENT NOT NULL,
+                                         rating      INT                NOT NULL,
+                                         description TEXT,
+                                         book_id     INT                NOT NULL,
+                                         author_id   INT                NOT NULL,
+                                         PRIMARY KEY (id),
+                                         FOREIGN KEY (book_id) REFERENCES tb_book (id),
+                                         FOREIGN KEY (author_id) REFERENCES tb_user (id)
+);
+
+CREATE TABLE IF NOT EXISTS tb_tag
+(
+    id   INT AUTO_INCREMENT NOT NULL,
+    name varchar(255)       NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS tb_book_tags
+(
+    book_id INT NOT NULL,
+    tag_id  INT NOT NULL,
+    FOREIGN KEY (book_id) REFERENCES tb_book (id),
+    FOREIGN KEY (tag_id) REFERENCES tb_tag (id)
 );

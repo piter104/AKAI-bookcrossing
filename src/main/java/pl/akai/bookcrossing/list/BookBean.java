@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.Tag;
 import pl.akai.bookcrossing.model.User;
 
 import java.util.List;
@@ -38,5 +39,9 @@ public class BookBean {
     public int getLastInsertedBookId() {
         User user = currentUserService.getCurrentUser();
         return bookDao.getInsertedBookIdByUserId(user.getId());
+    }
+
+    public List<Book> getBooksByTagList(List<Tag> tagList) {
+        return bookDao.getBooksByTagList(tagList);
     }
 }

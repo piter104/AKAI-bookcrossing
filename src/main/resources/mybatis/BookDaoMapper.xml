@@ -10,8 +10,19 @@
     </resultMap>
 
     <resultMap id="fullBookMap" type="Book">
-        <association column="owner_id"  property="owner" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
-        <association column="reader_id"  property="reader" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="owner_id" property="owner" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="reader_id" property="reader" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+    </resultMap>
+
+    <resultMap id="getBooksTags" type="BooksTags">
+        <collection property="bookId" javaType="ArrayList" ofType="Book" columnPrefix="BOOK_">
+            <id column="id" property="id"/>
+            <collection property="tagId" javaType="ArrayList" ofType="Tag" columnPrefix="TAG_">
+                <id column="id" property="id"/>
+            </collection>
+        </collection>
     </resultMap>
 
     <select id="getAllBooks" resultMap="fullBookMap">
@@ -20,7 +31,7 @@
     </select>
 
     <select id="getBookById" resultMap="fullBookMap">
-        SELECT * 
+        SELECT *
         FROM tb_book
         WHERE id = #{id}
     </select>
@@ -28,7 +39,7 @@
     <select id="getInsertedBookIdByUserId" resultType="INTEGER">
         SELECT b.id
         FROM tb_book b
-        INNER JOIN tb_user u ON b.owner_id = u.id
+                 INNER JOIN tb_user u ON b.owner_id = u.id
         WHERE u.id = #{user_id}
         ORDER BY b.id DESC
         LIMIT 1;
@@ -38,5 +49,12 @@
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
     </insert>
+
+    <select id="getBooksByTagList" resultMap="getBooksTags">
+        select b.*
+        from tb_book_tags bt
+                 join tb_book b on (b.id = bt.book_id)
+                 join tb_tag t on (t.id = bt.tag_id)
+    </select>
 
 </mapper>
