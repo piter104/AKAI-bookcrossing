@@ -37,8 +37,10 @@ CREATE TABLE IF NOT EXISTS tb_tag
 
 CREATE TABLE IF NOT EXISTS tb_book_tags
 (
-    book_id INT NOT NULL,
-    tag_id  INT NOT NULL,
+    id      INT AUTO_INCREMENT NOT NULL,
+    book_id INT                NOT NULL,
+    tag_id  INT                NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (book_id) REFERENCES tb_book (id),
     FOREIGN KEY (tag_id) REFERENCES tb_tag (id)
 );

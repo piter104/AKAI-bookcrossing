@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BooksTags {
+    private int id;
     private int bookId;
     private int tagId;
 }

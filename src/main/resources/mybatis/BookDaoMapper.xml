@@ -17,6 +17,7 @@
     </resultMap>
 
     <resultMap id="getBooksTags" type="BooksTags">
+        <id column="id" property="id"/>
         <collection property="bookId" javaType="ArrayList" ofType="Book" columnPrefix="BOOK_">
             <id column="id" property="id"/>
             <collection property="tagId" javaType="ArrayList" ofType="Tag" columnPrefix="TAG_">
