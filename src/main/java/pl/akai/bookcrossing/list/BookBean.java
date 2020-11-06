@@ -51,7 +51,10 @@ public class BookBean {
 
     void insertTag(List<Tag> tagList) {
         for (Tag tag : tagList) {
-            bookDao.insertTag(tag);
+            Tag tempTag = bookDao.getTagByName(tag.getName());
+            if (tempTag.getName().length() == 0) {
+                bookDao.insertTag(tag);
+            }
         }
     }
 

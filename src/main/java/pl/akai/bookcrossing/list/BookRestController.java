@@ -34,7 +34,7 @@ public class BookRestController {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
-        Book book = makeEmptyTags(model, 3);
+        Book book = makeEmptyTags(3);
         model.addAttribute("book", book);
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
@@ -42,7 +42,8 @@ public class BookRestController {
 
     @PostMapping("/book/add")
     public String addBookSubmit(@ModelAttribute Book book, Model model) {
-        int bookId = tagsInitialization(model, book);
+        model.addAttribute("book", book);
+        int bookId = tagsInitialization(book);
         return "redirect:/book/" + bookId;
     }
 
@@ -70,11 +71,9 @@ public class BookRestController {
         model.addAttribute("opinion", new Opinion());
     }
 
-    private int tagsInitialization(Model model, Book book) {
-        model.addAttribute("book", book);
-
-        Tag tempTag = new Tag();
-        List<Tag> tags = new ArrayList<Tag>();
+    private int tagsInitialization(Book book) {
+        Tag tempTag;
+        List<Tag> tags = new ArrayList<>();
 
         bookBean.insertTag(book.getTagList());
 
@@ -82,7 +81,7 @@ public class BookRestController {
             tempTag = bookBean.getTagByName(tagV.getName());
 
             if (tempTag.getName() == null || tempTag.getName().length() == 0) {
-                break;
+                continue;
             }
             tags.add(tempTag);
         }
@@ -98,7 +97,7 @@ public class BookRestController {
         return bookId;
     }
 
-    private Book makeEmptyTags(Model model, int tagNumber) {
+    private Book makeEmptyTags(int tagNumber) {
         Book book = new Book();
         for (int i = 1; i <= tagNumber; i++) {
             book.addTag(new Tag());

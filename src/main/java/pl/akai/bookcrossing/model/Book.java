@@ -19,7 +19,7 @@ public class Book {
     private String description;
     private User owner;
     private User reader;
-    private List<Tag> tagList = new ArrayList<Tag>();
+    private List<Tag> tagList = new ArrayList<>();
 
     public void addTag(Tag tag) {
         this.tagList.add(tag);
