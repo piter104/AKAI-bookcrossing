@@ -1,12 +1,13 @@
 package pl.akai.bookcrossing.list;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
 
-@Service
+@Repository
 public class BookDaoImpl implements BookDao {
 
     private final BookDaoMapper bookMapper;
@@ -17,18 +18,32 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book findBookById(int bookId) {
+    public Book getBookById(int bookId) {
         return bookMapper.getBookById(bookId);
     }
 
     @Override
-    public List<Book> findAllBooks() {
+    public List<Book> getAllBooks() {
         return bookMapper.getAllBooks();
     }
 
     @Override
     public void insertBook(Book book) {
-
         bookMapper.insertBook(book);
+    }
+
+    @Override
+    public int getInsertedBookIdByUserId(int id) {
+        return bookMapper.getInsertedBookIdByUserId(id);
+    }
+
+    @Override
+    public List<Tag> getTagsByBookId(int id) {
+        return bookMapper.getTagsByBookId(id);
+    }
+
+    @Override
+    public List<Book> getBooksByTagId(int id) {
+        return bookMapper.getBooksByTagId(id);
     }
 }

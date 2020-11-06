@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Formularz Dodania Książki</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Formularz Dodania Książki</h1>
+<form action="#" method="post" th:action="@{/book/add}" th:object="${book}">
+    <p>Tytuł: <input required th:field="*{title}" type="text"/></p>
+    <p>Autor: <input required th:field="*{author}" type="text"/></p>
+    <p>Opis: <textarea cols="33" id="description" name="description" rows="5">
+</textarea></p>
+    <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
+</form>
+<a th:href="@{/}">Wróć</a>
+</body>
+</html>

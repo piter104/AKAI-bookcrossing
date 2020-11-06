@@ -2,26 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pl.akai.bookcrossing.list.BookDaoMapper">
 
-    <resultMap id="baseBookMap" type="pl.akai.bookcrossing.model.Book" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="title" property="title" jdbcType="VARCHAR" />
-        <result column="author" property="author" jdbcType="VARCHAR" />
-        <result column="description" property="description" jdbcType="VARCHAR" />
-        <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <resultMap id="baseBookMap" type="Book">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="getAllBooks" resultMap="baseBookMap">
-        select * from tb_book
+    <resultMap id="fullBookMap" extends="baseBookMap" type="Book">
+        <association column="owner_id" property="owner" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="reader_id" property="reader" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
+    </resultMap>
+
+    <resultMap id="bookTagsMap" type="Tag">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllBooks" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book;
     </select>
 
-    <select id="getBookById" resultMap="baseBookMap">
-        select * from tb_book
-        where id = #{id}
+    <select id="getBookById" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE id = #{id};
+    </select>
+
+    <select id="getInsertedBookIdByUserId" resultType="INTEGER">
+        SELECT b.id
+        FROM tb_book b
+                 INNER JOIN tb_user u ON b.owner_id = u.id
+        WHERE u.id = #{user_id}
+        ORDER BY b.id DESC
+        LIMIT 1;
     </select>
 
     <insert id="insertBook">
-        INSERT INTO tb_book (title, author, description, owner_id)
-        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.ownerId});
+        INSERT INTO tb_book (title, author, description, owner_id, reader_id)
+        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
     </insert>
 
+    <select id="getTagsByBookId" resultMap="fullBookMap">
+        SELECT t.*
+        FROM tb_book_tags bt
+                 INNER JOIN tb_tag t ON (t.id = bt.tag_id)
+        WHERE bt.book_id = #{id};
+    </select>
+
+    <select id="getBooksByTagId" resultMap="fullBookMap">
+        SELECT b.*
+        FROM tb_book_tags bt
+                 INNER JOIN tb_book b on bt.book_id = b.id
+        WHERE bt.tag_id = #{id};
+    </select>
 </mapper>

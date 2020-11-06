@@ -5,8 +5,8 @@ spring.datasource.url=jdbc:mysql://localhost:3306/bookcrossing
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.initialization-mode=always
 
-spring.security.oauth2.client.registration.google.client-id=845239078326-5b1j6mp41227bb8b4krjh9ichh2jd17m.apps.googleusercontent.com
-spring.security.oauth2.client.registration.google.client-secret=7Rtdrd1p_E2lFSGYujCyhxJs
+spring.security.oauth2.client.registration.google.client-id=
+spring.security.oauth2.client.registration.google.client-secret=
 spring.security.oauth2.client.registration.google.scope=email,profile
 
 
