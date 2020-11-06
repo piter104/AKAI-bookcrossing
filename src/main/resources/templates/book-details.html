@@ -47,12 +47,10 @@
 </div>
 <table>
     <tr>
-        <th>ID</th>
-        <th>NAZWA</th>
+        <th>Tagi książki</th>
     </tr>
     <tr th:each="tag : ${tags}">
-        <td th:text="${tag?.id}">ID</td>
-        <td th:text="${tag?.name}">NAZWA</td>
+        <td th:text="${tag?.name}">Tagi książki</td>
     </tr>
 </table>
 <a th:href="@{/}">Wroć do strony głównej</a>

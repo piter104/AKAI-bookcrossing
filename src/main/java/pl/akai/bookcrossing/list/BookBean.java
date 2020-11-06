@@ -62,4 +62,8 @@ public class BookBean {
     Tag getTagByName(String tagName) {
         return bookDao.getTagByName(tagName);
     }
+
+    void insertBookTag(int bookId, int tagId) {
+        bookDao.insertBookTag(bookId, tagId);
+    }
 }

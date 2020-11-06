@@ -48,7 +48,7 @@
     </insert>
 
     <select id="getTagsByBookId" resultMap="bookTagsMap">
-        SELECT t.*
+        SELECT t.name
         FROM tb_book_tags bt
                  INNER JOIN tb_tag t ON (t.id = bt.tag_id)
         WHERE bt.book_id = #{id};
@@ -72,8 +72,14 @@
     </select>
 
     <select id="getTagByName" resultMap="bookTagsMap">
-        SELECT distinct *
+        SELECT *
         FROM tb_tag
-        WHERE name like upper(#{name});
+        WHERE name like upper(#{name})
+        LIMIT 1;
     </select>
+
+    <insert id="insertBookTag">
+        INSERT INTO tb_book_tags (book_id, tag_id)
+        VALUES (#{bookId}, #{tagId});
+    </insert>
 </mapper>

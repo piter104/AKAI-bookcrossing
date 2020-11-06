@@ -27,12 +27,10 @@
 </form>
 <table>
     <tr>
-        <th>ID</th>
-        <th>NAZWA</th>
+        <th>Tagi</th>
     </tr>
     <tr th:each="tag : ${tags}">
-        <td th:text="${tag?.id}">ID</td>
-        <td th:text="${tag?.name}">NAZWA</td>
+        <td th:text="${tag?.name}">Tagi</td>
     </tr>
 </table>
 <a th:href="@{/}">Wróć</a>
