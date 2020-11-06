@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
+import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
 
@@ -26,26 +27,34 @@ public class BookRestController {
 
     @GetMapping("/")
     public String booksList(Model model) {
-        model.addAttribute("books", bookBean.getTagsByBookId(1));
+        model.addAttribute("books", bookBean.getAllBooks());
         return "index";
     }
 
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
-        model.addAttribute("book", new Book());
+        Book book = new Book();
+        for (int i = 1; i <= 3; i++) {
+            book.addTag(new Tag());
+        }
+        model.addAttribute("book", book);
+        model.addAttribute("tag", new Tag());
+        model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }
 
     @PostMapping("/book/add")
-    public String addBookSubmit(@ModelAttribute Book book, Model model) {
+    public String addBookSubmit(@ModelAttribute Book book, @ModelAttribute Tag tag, Model model) {
         model.addAttribute("book", book);
         bookBean.insertBook(book);
+        bookBean.insertTag(book.getTagList());
         int bookId = bookBean.getLastInsertedBookId();
         return "redirect:/book/" + bookId;
     }
 
     @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
+        model.addAttribute("tags", bookBean.getTagsByBookId(id));
         bookDetailsInitialization(model, id, false);
         return "book-details";
     }

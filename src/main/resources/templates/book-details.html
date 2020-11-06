@@ -45,6 +45,16 @@
 <div th:if="${isSendSuccess}">
     <p>Udało Ci się dodać opinię!</p>
 </div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAZWA</th>
+    </tr>
+    <tr th:each="tag : ${tags}">
+        <td th:text="${tag?.id}">ID</td>
+        <td th:text="${tag?.name}">NAZWA</td>
+    </tr>
+</table>
 <a th:href="@{/}">Wroć do strony głównej</a>
 </body>
 </html>

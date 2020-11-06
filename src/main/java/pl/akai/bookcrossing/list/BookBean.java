@@ -48,4 +48,15 @@ public class BookBean {
     public List<Book> getBooksByTagId(int id) {
         return bookDao.getBooksByTagId(id);
     }
+
+    void insertTag(List<Tag> tagList) {
+        for (Tag tag : tagList) {
+            bookDao.insertTag(tag);
+        }
+
+    }
+
+    List<Tag> getAllTags() {
+        return bookDao.getAllTags();
+    }
 }

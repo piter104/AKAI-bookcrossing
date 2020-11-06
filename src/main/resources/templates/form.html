@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Formularz Dodania Książki</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,10 +9,32 @@
 <form action="#" method="post" th:action="@{/book/add}" th:object="${book}">
     <p>Tytuł: <input required th:field="*{title}" type="text"/></p>
     <p>Autor: <input required th:field="*{author}" type="text"/></p>
+    <table>
+        <thead>
+        <tr>
+            <th> Nazwa tagu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tag, stat : *{tagList}">
+            <td><input th:field="*{tagList[__${stat.index}__].name}" type="text"/></td>
+        </tr>
+        </tbody>
+    </table>
     <p>Opis: <textarea cols="33" id="description" name="description" rows="5">
 </textarea></p>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAZWA</th>
+    </tr>
+    <tr th:each="tag : ${tags}">
+        <td th:text="${tag?.id}">ID</td>
+        <td th:text="${tag?.name}">NAZWA</td>
+    </tr>
+</table>
 <a th:href="@{/}">Wróć</a>
 </body>
 </html>

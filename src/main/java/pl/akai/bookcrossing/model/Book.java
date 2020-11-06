@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,5 +19,9 @@ public class Book {
     private String description;
     private User owner;
     private User reader;
-    private List<Tag> tagList;
+    private List<Tag> tagList = new ArrayList<Tag>();
+
+    public void addTag(Tag tag) {
+        this.tagList.add(tag);
+    }
 }

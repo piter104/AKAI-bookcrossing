@@ -11,7 +11,4 @@ INSERT INTO bookcrossing.tb_opinion (rating, book_id, author_id)
 VALUES (6, 1, 1);
 
 INSERT INTO bookcrossing.tb_tag (name)
-VALUES ('spring');
-
-# INSERT INTO bookcrossing.tb_book_tags
-# VALUES (2, 1);
+VALUES ('SPRING');

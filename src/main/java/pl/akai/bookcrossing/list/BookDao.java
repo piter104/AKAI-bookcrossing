@@ -18,4 +18,8 @@ public interface BookDao {
     List<Tag> getTagsByBookId(int id);
 
     List<Book> getBooksByTagId(int id);
+
+    void insertTag(Tag tag);
+
+    List<Tag> getAllTags();
 }
