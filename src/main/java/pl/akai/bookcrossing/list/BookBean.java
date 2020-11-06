@@ -53,10 +53,13 @@ public class BookBean {
         for (Tag tag : tagList) {
             bookDao.insertTag(tag);
         }
-
     }
 
     List<Tag> getAllTags() {
         return bookDao.getAllTags();
+    }
+
+    Tag getTagByName(String tagName) {
+        return bookDao.getTagByName(tagName);
     }
 }

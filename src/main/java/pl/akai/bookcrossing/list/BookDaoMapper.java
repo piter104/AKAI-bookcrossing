@@ -26,4 +26,6 @@ public interface BookDaoMapper {
     void insertTag(@Param("tag") Tag tag);
 
     List<Tag> getAllTags();
+
+    Tag getTagByName(@Param("name") String tagName);
 }

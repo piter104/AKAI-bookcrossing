@@ -57,4 +57,10 @@ public class BookDaoImpl implements BookDao {
         return bookMapper.getAllTags();
     }
 
+    @Override
+    public Tag getTagByName(String tagName) {
+        return bookMapper.getTagByName(tagName);
+    }
+
+
 }

@@ -70,4 +70,10 @@
         SELECT *
         FROM tb_tag;
     </select>
+
+    <select id="getTagByName" resultMap="bookTagsMap">
+        SELECT distinct *
+        FROM tb_tag
+        WHERE name like upper(#{name});
+    </select>
 </mapper>

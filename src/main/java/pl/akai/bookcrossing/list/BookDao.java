@@ -22,4 +22,6 @@ public interface BookDao {
     void insertTag(Tag tag);
 
     List<Tag> getAllTags();
+
+    Tag getTagByName(String tagName);
 }

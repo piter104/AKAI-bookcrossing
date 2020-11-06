@@ -11,6 +11,7 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
 import pl.akai.bookcrossing.model.Tag;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -38,16 +39,13 @@ public class BookRestController {
             book.addTag(new Tag());
         }
         model.addAttribute("book", book);
-        model.addAttribute("tag", new Tag());
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }
 
     @PostMapping("/book/add")
-    public String addBookSubmit(@ModelAttribute Book book, @ModelAttribute Tag tag, Model model) {
-        model.addAttribute("book", book);
-        bookBean.insertBook(book);
-        bookBean.insertTag(book.getTagList());
+    public String addBookSubmit(@ModelAttribute Book book, Model model) {
+        tagsInitialization(model, book);
         int bookId = bookBean.getLastInsertedBookId();
         return "redirect:/book/" + bookId;
     }
@@ -73,5 +71,16 @@ public class BookRestController {
         model.addAttribute("book", book);
         model.addAttribute("opinions", opinions);
         model.addAttribute("opinion", new Opinion());
+    }
+
+    private void tagsInitialization(Model model, Book book) {
+        model.addAttribute("book", book);
+        List<Tag> tags = new ArrayList<Tag>();
+        bookBean.insertTag(book.getTagList());
+        for (Tag tagV : book.getTagList()) {
+            tags.add(bookBean.getTagByName(tagV.getName()));
+        }
+        book.setTagList(tags);
+        bookBean.insertBook(book);
     }
 }
