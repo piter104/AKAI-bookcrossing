@@ -16,4 +16,6 @@ public interface BookDao {
     int getInsertedBookIdByUserId(int id);
 
     List<Tag> getTagsByBookId(int id);
+
+    List<Book> getBooksByTagId(int id);
 }

@@ -14,10 +14,10 @@
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="reader_id" property="reader" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
-        <collection column="id" property="tagList" javaType="List" ofType="Tag" select="getTagsByBookId"/>
+        <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
     </resultMap>
 
-    <resultMap id="bookTags" type="Tag">
+    <resultMap id="bookTagsMap" type="Tag">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
@@ -30,7 +30,7 @@
     <select id="getBookById" resultMap="fullBookMap">
         SELECT *
         FROM tb_book
-        WHERE id = #{id}
+        WHERE id = #{id};
     </select>
 
     <select id="getInsertedBookIdByUserId" resultType="INTEGER">
@@ -47,11 +47,17 @@
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
     </insert>
 
-    <select id="getTagsByBookId" resultMap="bookTags">
+    <select id="getTagsByBookId" resultMap="fullBookMap">
         SELECT t.*
         FROM tb_book_tags bt
-                 JOIN tb_tag t ON (t.id = bt.tag_id)
+                 INNER JOIN tb_tag t ON (t.id = bt.tag_id)
         WHERE bt.book_id = #{id};
     </select>
 
+    <select id="getBooksByTagId" resultMap="fullBookMap">
+        SELECT b.*
+        FROM tb_book_tags bt
+                 INNER JOIN tb_book b on bt.book_id = b.id
+        WHERE bt.tag_id = #{id};
+    </select>
 </mapper>

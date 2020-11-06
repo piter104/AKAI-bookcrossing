@@ -44,4 +44,8 @@ public class BookBean {
     public List<Tag> getTagsByBookId(int id) {
         return bookDao.getTagsByBookId(id);
     }
+
+    public List<Book> getBooksByTagId(int id) {
+        return bookDao.getBooksByTagId(id);
+    }
 }

@@ -26,7 +26,7 @@ public class BookRestController {
 
     @GetMapping("/")
     public String booksList(Model model) {
-        model.addAttribute("books", bookBean.getAllBooks());
+        model.addAttribute("books", bookBean.getTagsByBookId(1));
         return "index";
     }
 
