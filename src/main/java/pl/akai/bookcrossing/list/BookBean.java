@@ -52,7 +52,7 @@ public class BookBean {
     void insertTag(List<Tag> tagList) {
         for (Tag tag : tagList) {
             Tag tempTag = bookDao.getTagByName(tag.getName());
-            if (tempTag.getName().length() == 0) {
+            if (tempTag == null) {
                 bookDao.insertTag(tag);
             }
         }
