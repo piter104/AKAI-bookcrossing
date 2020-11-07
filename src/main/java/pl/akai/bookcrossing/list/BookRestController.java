@@ -72,11 +72,19 @@ public class BookRestController {
     }
 
     private int tagsInitialization(Book book) {
+        bookBean.insertTag(book.getTagList());
+        List<Tag> tags = tagListCheck(book);
+        book.setTagList(tags);
+        bookBean.insertBook(book);
+
+        int bookId = bookBean.getLastInsertedBookId();
+        bookTagsInsert(book, bookId);
+        return bookId;
+    }
+
+    private List<Tag> tagListCheck(Book book) {
         Tag tempTag;
         List<Tag> tags = new ArrayList<>();
-
-        bookBean.insertTag(book.getTagList());
-
         for (Tag tagV : book.getTagList()) {
             tempTag = bookBean.getTagByName(tagV.getName());
 
@@ -85,16 +93,15 @@ public class BookRestController {
             }
             tags.add(tempTag);
         }
+        return tags;
+    }
 
-        book.setTagList(tags);
-        bookBean.insertBook(book);
-        int bookId = bookBean.getLastInsertedBookId();
-
+    private void bookTagsInsert(Book book, int bookId) {
+        Tag tempTag;
         for (Tag tagV : book.getTagList()) {
             tempTag = bookBean.getTagByName(tagV.getName());
             bookBean.insertBookTag(bookId, tempTag.getId());
         }
-        return bookId;
     }
 
     private Book makeEmptyTags(int tagNumber) {
