@@ -11,8 +11,9 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
 import pl.akai.bookcrossing.model.Tag;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class BookRestController {
@@ -34,8 +35,7 @@ public class BookRestController {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
-        Book book = makeEmptyTags(3);
-        model.addAttribute("book", book);
+        model.addAttribute("book", new Book());
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }
@@ -43,7 +43,7 @@ public class BookRestController {
     @PostMapping("/book/add")
     public String addBookSubmit(@ModelAttribute Book book, Model model) {
         model.addAttribute("book", book);
-        int bookId = tagsInitialization(book);
+        int bookId = bookProcess(book);
         return "redirect:/book/" + bookId;
     }
 
@@ -71,20 +71,18 @@ public class BookRestController {
         model.addAttribute("opinion", new Opinion());
     }
 
-    private int tagsInitialization(Book book) {
+    private int bookProcess(Book book) {
         bookBean.insertTag(book.getTagList());
-        List<Tag> tags = tagListCheck(book);
+        Set<Tag> tags = tagListCheck(book);
         book.setTagList(tags);
         bookBean.insertBook(book);
-
-        int bookId = bookBean.getLastInsertedBookId();
-        bookTagsInsert(book, bookId);
-        return bookId;
+        bookTagsInsert(book, book.getId());
+        return book.getId();
     }
 
-    private List<Tag> tagListCheck(Book book) {
+    private Set<Tag> tagListCheck(Book book) {
         Tag tempTag;
-        List<Tag> tags = new ArrayList<>();
+        Set<Tag> tags = new HashSet<>();
         for (Tag tagV : book.getTagList()) {
             tempTag = bookBean.getTagByName(tagV.getName());
 
@@ -97,18 +95,9 @@ public class BookRestController {
     }
 
     private void bookTagsInsert(Book book, int bookId) {
-        Tag tempTag;
         for (Tag tagV : book.getTagList()) {
-            tempTag = bookBean.getTagByName(tagV.getName());
-            bookBean.insertBookTag(bookId, tempTag.getId());
+            bookBean.insertBookTag(bookId, tagV.getId());
         }
     }
 
-    private Book makeEmptyTags(int tagNumber) {
-        Book book = new Book();
-        for (int i = 1; i <= tagNumber; i++) {
-            book.addTag(new Tag());
-        }
-        return book;
-    }
 }

@@ -8,6 +8,7 @@ import pl.akai.bookcrossing.model.Tag;
 import pl.akai.bookcrossing.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class BookBean {
@@ -36,12 +37,7 @@ public class BookBean {
         return bookDao.getBookById(id);
     }
 
-    public int getLastInsertedBookId() {
-        User user = currentUserService.getCurrentUser();
-        return bookDao.getInsertedBookIdByUserId(user.getId());
-    }
-
-    public List<Tag> getTagsByBookId(int id) {
+    public Set<Tag> getTagsByBookId(int id) {
         return bookDao.getTagsByBookId(id);
     }
 
@@ -49,7 +45,7 @@ public class BookBean {
         return bookDao.getBooksByTagId(id);
     }
 
-    void insertTag(List<Tag> tagList) {
+    void insertTag(Set<Tag> tagList) {
         for (Tag tag : tagList) {
             Tag tempTag = bookDao.getTagByName(tag.getName());
             if (tempTag == null) {
@@ -58,7 +54,7 @@ public class BookBean {
         }
     }
 
-    List<Tag> getAllTags() {
+    Set<Tag> getAllTags() {
         return bookDao.getAllTags();
     }
 

@@ -4,6 +4,7 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BookDao {
 
@@ -13,15 +14,13 @@ public interface BookDao {
 
     void insertBook(Book book);
 
-    int getInsertedBookIdByUserId(int id);
-
-    List<Tag> getTagsByBookId(int id);
+    Set<Tag> getTagsByBookId(int id);
 
     List<Book> getBooksByTagId(int id);
 
     void insertTag(Tag tag);
 
-    List<Tag> getAllTags();
+    Set<Tag> getAllTags();
 
     Tag getTagByName(String tagName);
 

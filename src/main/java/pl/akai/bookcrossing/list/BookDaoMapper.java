@@ -6,6 +6,7 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Mapper
@@ -15,17 +16,15 @@ public interface BookDaoMapper {
 
     Book getBookById(@Param("id") int id);
 
-    int getInsertedBookIdByUserId(@Param("user_id") int id);
-
     void insertBook(@Param("book") Book book);
 
-    List<Tag> getTagsByBookId(@Param("id") int id);
+    Set<Tag> getTagsByBookId(@Param("id") int id);
 
     List<Book> getBooksByTagId(@Param("id") int id);
 
     void insertTag(@Param("tag") Tag tag);
 
-    List<Tag> getAllTags();
+    Set<Tag> getAllTags();
 
     Tag getTagByName(@Param("name") String tagName);
 

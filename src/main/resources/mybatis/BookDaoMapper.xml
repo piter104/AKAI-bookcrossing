@@ -14,7 +14,7 @@
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="reader_id" property="reader" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
-        <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
+        <collection column="id" property="tagList" javaType="hashmap" ofType="Tag" select="getTagsByBookId"/>
     </resultMap>
 
     <resultMap id="bookTagsMap" type="Tag">
@@ -31,15 +31,6 @@
         SELECT *
         FROM tb_book
         WHERE id = #{id};
-    </select>
-
-    <select id="getInsertedBookIdByUserId" resultType="INTEGER">
-        SELECT b.id
-        FROM tb_book b
-                 INNER JOIN tb_user u ON b.owner_id = u.id
-        WHERE u.id = #{user_id}
-        ORDER BY b.id DESC
-        LIMIT 1;
     </select>
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
@@ -61,7 +52,7 @@
         WHERE bt.tag_id = #{id};
     </select>
 
-    <insert id="insertTag">
+    <insert id="insertTag" useGeneratedKeys="true" keyProperty="tag.id" keyColumn="id">
         INSERT INTO tb_tag (name)
         VALUES (upper(#{tag.name}));
     </insert>
