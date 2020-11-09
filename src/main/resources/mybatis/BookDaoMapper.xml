@@ -42,7 +42,7 @@
         LIMIT 1;
     </select>
 
-    <insert id="insertBook">
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
     </insert>
