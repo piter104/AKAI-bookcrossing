@@ -24,7 +24,11 @@ public class BookRestController {
     @GetMapping("/")
     public String booksList(Model model,
                             @RequestParam(defaultValue = "false") boolean user) {
-        model.addAttribute("books", bookBean.getAllBooks());
+        if (user) {
+            model.addAttribute("books", bookBean.getCurrentUserBooks());
+        } else {
+            model.addAttribute("books", bookBean.getAllBooks());
+        }
         model.addAttribute("user", user);
         return "index";
     }

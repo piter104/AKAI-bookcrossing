@@ -39,4 +39,9 @@ public class BookBean {
         User user = currentUserService.getCurrentUser();
         return bookDao.getInsertedBookIdByUserId(user.getId());
     }
+
+    public List<Book> getCurrentUserBooks() {
+        //TODO implement getCurrentUserBooks
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
