@@ -34,7 +34,7 @@
         LIMIT 1;
     </select>
 
-    <select id="getUserBooksByUserId" resultType="fullBookMap">
+    <select id="getUserBooksByUserId" resultMap="fullBookMap">
         SELECT *
         FROM tb_book
         WHERE owner_id = #{user_id} OR reader_id = #{user_id};
