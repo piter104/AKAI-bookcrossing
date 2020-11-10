@@ -38,7 +38,6 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> getUserBooksByUserId(int id) {
-        //TODO implement getUserBooksByUserId
-        throw new UnsupportedOperationException("Not implemented yet");
+        return bookMapper.getUserBooksByUserId(id);
     }
 }
