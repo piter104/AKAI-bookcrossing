@@ -8,6 +8,14 @@
     }</style>
 </head>
 <body>
+<div th:if="${user == false}">
+    <p>Wszystkie</p>
+    <a th:href="@{/(user=true)}">Moje</a>
+</div>
+<div th:if="${user == true}">
+    <a th:href="@{/}">Wszystkie</a>
+    <p>Moje</p>
+</div>
 <table>
     <tr>
         <th>ID</th>
