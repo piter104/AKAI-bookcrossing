@@ -5,16 +5,21 @@
     <title>Title</title>
     <style>td {
         border: 1px solid black;
-    }</style>
+    }
+
+    .InsideContent {
+        display: inline-block;
+    }
+    </style>
 </head>
 <body>
 <div th:if="${user == false}">
-    <p>Wszystkie</p>
-    <a th:href="@{/(user=true)}">Moje</a>
+    <p class="InsideContent">Wszystkie</p>
+    <a th:href="@{/(user=true)}" class="InsideContent">Moje</a>
 </div>
 <div th:if="${user == true}">
-    <a th:href="@{/}">Wszystkie</a>
-    <p>Moje</p>
+    <a th:href="@{/}" class="InsideContent">Wszystkie</a>
+    <p class="InsideContent">Moje</p>
 </div>
 <table>
     <tr>
