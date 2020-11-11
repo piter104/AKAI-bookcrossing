@@ -9,17 +9,17 @@
 <form action="#" method="post" th:action="@{/book/add}">
     <p>Tytuł: <input required th:name="title" th:value="${book.title}" type="text"/></p>
     <p>Autor: <input required th:name="author" th:value="${book.author}" type="text"/></p>
-    <p>Opis: <textarea cols="33" id="book.description" rows="5" th:name="description">
-</textarea></p>
+    <p>Opis:</p>
+    <textarea cols="33" id="book.description" rows="5" th:name="description"></textarea>
     <p> Wybierz tagi:</p>
-    <br>
     <select id="extag" multiple="multiple" name="extag">
         <option th:each="tag : ${tags}"
                 th:text="${tag.name}"
                 th:value="${tag.name}">Tag name
         </option>
     </select>
-    <p>Dodaj Nowe Tagi (np. spring, java, html): <input th:name="tag" th:value="${tag}" type="text"/></p>
+    <p>Dodaj Nowe Tagi (np. spring, java, html):</p>
+    <input th:name="tag" th:value="${tag}" type="text"/>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
 <a th:href="@{/}">Wróć</a>

@@ -66,7 +66,6 @@ public class BookRestController {
     private void bookDetailsInitialization(Model model, Integer id, boolean isSendSuccess) {
         Book book = bookBean.getBookById(id);
         List<Opinion> opinions = opinionBean.getOpinionsByBookId(id);
-
         model.addAttribute("isSendSuccess", isSendSuccess);
         model.addAttribute("book", book);
         model.addAttribute("opinions", opinions);
