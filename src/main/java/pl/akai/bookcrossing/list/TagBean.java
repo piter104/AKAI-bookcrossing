@@ -18,7 +18,7 @@ public class TagBean {
             Tag tag = new Tag();
             tag.setName(name.trim());
             Tag existingTag = bookBean.getTagByName(tag.getName());
-            if (existingTag == null) {
+            if (existingTag == null && tag.getName().length() != 0) {
                 bookBean.insertTag(tag);
                 book.addTag(tag);
                 bookBean.insertBookTag(book.getId(), tag.getId());

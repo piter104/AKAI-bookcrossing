@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,7 +19,7 @@ public class Book {
     private String description;
     private User owner;
     private User reader;
-    private Set<Tag> tagList = new HashSet<>();
+    private List<Tag> tagList = new ArrayList<>();
 
     public void addTag(Tag tag) {
         this.tagList.add(tag);

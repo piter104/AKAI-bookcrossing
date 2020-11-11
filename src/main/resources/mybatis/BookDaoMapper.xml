@@ -14,7 +14,7 @@
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="reader_id" property="reader" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
-        <collection column="id" property="tagList" javaType="hashmap" ofType="Tag" select="getTagsByBookId"/>
+        <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
     </resultMap>
 
     <resultMap id="bookTagsMap" type="Tag">

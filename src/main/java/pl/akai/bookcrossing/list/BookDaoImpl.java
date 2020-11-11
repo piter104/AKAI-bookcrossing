@@ -6,7 +6,6 @@ import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class BookDaoImpl implements BookDao {
@@ -34,7 +33,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Set<Tag> getTagsByBookId(int id) {
+    public List<Tag> getTagsByBookId(int id) {
         return bookMapper.getTagsByBookId(id);
     }
 
@@ -49,7 +48,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Set<Tag> getAllTags() {
+    public List<Tag> getAllTags() {
         return bookMapper.getAllTags();
     }
 

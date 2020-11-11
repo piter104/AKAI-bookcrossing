@@ -12,3 +12,6 @@ VALUES (6, 1, 1);
 
 INSERT INTO bookcrossing.tb_tag (name)
 VALUES ('SPRING');
+
+# INSERT INTO bookcrossing.tb_book_tags (book_id, tag_id)
+# VALUES (1,1);
