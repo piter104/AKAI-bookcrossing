@@ -6,23 +6,12 @@
 </head>
 <body>
 <h1>Formularz Dodania Książki</h1>
-<form action="#" method="post" th:action="@{/book/add}" th:object="${book}">
-    <p>Tytuł: <input required th:field="*{title}" type="text"/></p>
-    <p>Autor: <input required th:field="*{author}" type="text"/></p>
-    <p>Opis: <textarea cols="33" id="description" name="description" rows="5">
+<form action="#" method="post" th:action="@{/book/add}">
+    <p>Tytuł: <input required th:name="title" th:value="${book.title}" type="text"/></p>
+    <p>Autor: <input required th:name="author" th:value="${book.author}" type="text"/></p>
+    <p>Opis: <textarea cols="33" id="book.description" rows="5" th:name="description">
 </textarea></p>
-    <table>
-        <thead>
-        <tr>
-            <th> Nazwa tagu</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="tag, stat : *{tagList}">
-            <td><input th:field="*{tagList[__${stat.index}__].name}" type="text"/></td>
-        </tr>
-        </tbody>
-    </table>
+    <p>Nowe Tagi: <input th:name="tag" th:value="${tag}" type="text"/></p>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
 <table>

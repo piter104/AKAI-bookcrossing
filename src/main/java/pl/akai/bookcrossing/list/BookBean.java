@@ -45,12 +45,10 @@ public class BookBean {
         return bookDao.getBooksByTagId(id);
     }
 
-    void insertTag(Set<Tag> tagList) {
-        for (Tag tag : tagList) {
-            Tag tempTag = bookDao.getTagByName(tag.getName());
-            if (tempTag == null) {
-                bookDao.insertTag(tag);
-            }
+    void insertTag(Tag tag) {
+        Tag tempTag = bookDao.getTagByName(tag.getName());
+        if (tempTag == null) {
+            bookDao.insertTag(tag);
         }
     }
 

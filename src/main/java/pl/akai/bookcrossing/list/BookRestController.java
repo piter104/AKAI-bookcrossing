@@ -3,28 +3,24 @@ package pl.akai.bookcrossing.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
-import pl.akai.bookcrossing.model.Tag;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class BookRestController {
 
     private final BookBean bookBean;
     private final OpinionBean opinionBean;
+    private final TagBean tagBean;
 
     @Autowired
-    public BookRestController(BookBean bookBean, OpinionBean opinionBean) {
+    public BookRestController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean) {
         this.bookBean = bookBean;
         this.opinionBean = opinionBean;
+        this.tagBean = tagBean;
     }
 
     @GetMapping("/")
@@ -35,16 +31,19 @@ public class BookRestController {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
+        String newTags = "";
+        model.addAttribute("tag", newTags);
         model.addAttribute("book", new Book());
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }
 
     @PostMapping("/book/add")
-    public String addBookSubmit(@ModelAttribute Book book, Model model) {
+    public String addBookSubmit(@RequestParam(name = "tag", required = false, defaultValue = "") String newTags, @ModelAttribute Book book, Model model) {
+        bookBean.insertBook(book);
+        tagBean.insertNewTags(newTags, book);
         model.addAttribute("book", book);
-        int bookId = bookProcess(book);
-        return "redirect:/book/" + bookId;
+        return "redirect:/book/" + book.getId();
     }
 
     @GetMapping("/book/{id}")
@@ -70,13 +69,12 @@ public class BookRestController {
         model.addAttribute("opinions", opinions);
         model.addAttribute("opinion", new Opinion());
     }
-
+/*
     private int bookProcess(Book book) {
         bookBean.insertTag(book.getTagList());
         Set<Tag> tags = tagListCheck(book);
         book.setTagList(tags);
         bookBean.insertBook(book);
-        bookTagsInsert(book, book.getId());
         return book.getId();
     }
 
@@ -99,5 +97,5 @@ public class BookRestController {
             bookBean.insertBookTag(bookId, tagV.getId());
         }
     }
-
+*/
 }
