@@ -30,8 +30,7 @@
     <select id="getBookById" resultMap="fullBookMap">
         SELECT *
         FROM tb_book
-        WHERE id = #{id}
-        LIMIT 1;
+        WHERE id = #{id};
     </select>
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
