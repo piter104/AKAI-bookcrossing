@@ -32,15 +32,18 @@ public class BookRestController {
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
         String newTags = "";
+        String existingTags = "";
         model.addAttribute("tag", newTags);
+        model.addAttribute("extag", existingTags);
         model.addAttribute("book", new Book());
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }
 
     @PostMapping("/book/add")
-    public String addBookSubmit(@RequestParam(name = "tag", required = false, defaultValue = "") String newTags, @ModelAttribute Book book, Model model) {
+    public String addBookSubmit(@RequestParam(name = "tag", required = false, defaultValue = "") String newTags, @RequestParam(name = "extag", required = false, defaultValue = "") String existingTags, @ModelAttribute Book book, Model model) {
         bookBean.insertBook(book);
+        tagBean.insertExistingTags(existingTags, book);
         tagBean.insertNewTags(newTags, book);
         model.addAttribute("book", book);
         return "redirect:/book/" + book.getId();
@@ -69,33 +72,4 @@ public class BookRestController {
         model.addAttribute("opinions", opinions);
         model.addAttribute("opinion", new Opinion());
     }
-/*
-    private int bookProcess(Book book) {
-        bookBean.insertTag(book.getTagList());
-        Set<Tag> tags = tagListCheck(book);
-        book.setTagList(tags);
-        bookBean.insertBook(book);
-        return book.getId();
-    }
-
-    private Set<Tag> tagListCheck(Book book) {
-        Tag tempTag;
-        Set<Tag> tags = new HashSet<>();
-        for (Tag tagV : book.getTagList()) {
-            tempTag = bookBean.getTagByName(tagV.getName());
-
-            if (tempTag.getName() == null || tempTag.getName().length() == 0) {
-                continue;
-            }
-            tags.add(tempTag);
-        }
-        return tags;
-    }
-
-    private void bookTagsInsert(Book book, int bookId) {
-        for (Tag tagV : book.getTagList()) {
-            bookBean.insertBookTag(bookId, tagV.getId());
-        }
-    }
-*/
 }

@@ -25,4 +25,15 @@ public class TagBean {
             }
         }
     }
+
+    public void insertExistingTags(String existingTags, Book book) {
+        String[] tagNames = existingTags.split("[,]", 0);
+        for (String name : tagNames) {
+            Tag existingTag = bookBean.getTagByName(name);
+            if (!book.getTagList().contains(existingTag)) {
+                book.addTag(existingTag);
+                bookBean.insertBookTag(book.getId(), existingTag.getId());
+            }
+        }
+    }
 }
