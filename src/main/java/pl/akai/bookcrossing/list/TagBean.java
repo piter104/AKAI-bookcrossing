@@ -14,7 +14,7 @@ public class TagBean {
 
     public void insertNewTags(String newTags, Book book) {
         if (newTags.length() != 0) {
-            String[] tagNames = newTags.split("[,]", 0);
+            String[] tagNames = newTags.split(",");
             for (String name : tagNames) {
                 Tag tag = new Tag();
                 tag.setName(name.trim());
@@ -30,7 +30,7 @@ public class TagBean {
 
     public void insertExistingTags(String existingTags, Book book) {
         if (existingTags.length() != 0) {
-            String[] tagNames = existingTags.split("[,]", 0);
+            String[] tagNames = existingTags.split(",");
             for (String name : tagNames) {
                 Tag existingTag = bookBean.getTagByName(name);
                 if (!book.getTagList().contains(existingTag)) {
