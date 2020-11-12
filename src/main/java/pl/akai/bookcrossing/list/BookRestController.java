@@ -33,6 +33,12 @@ public class BookRestController {
         return "index";
     }
 
+    @GetMapping("/my-books")
+    public String myBooksList(Model model) {
+        model.addAttribute("books", bookBean.getCurrentUserBooks());
+        return "my_books";
+    }
+
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book());
