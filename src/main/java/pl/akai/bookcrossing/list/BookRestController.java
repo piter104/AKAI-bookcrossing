@@ -3,7 +3,10 @@ package pl.akai.bookcrossing.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Opinion;
 
@@ -22,14 +25,8 @@ public class BookRestController {
     }
 
     @GetMapping("/")
-    public String booksList(Model model,
-                            @RequestParam(defaultValue = "false") boolean user) {
-        if (user) {
-            model.addAttribute("books", bookBean.getCurrentUserBooks());
-        } else {
-            model.addAttribute("books", bookBean.getAllBooks());
-        }
-        model.addAttribute("user", user);
+    public String booksList(Model model) {
+        model.addAttribute("books", bookBean.getAllBooks());
         return "index";
     }
 
