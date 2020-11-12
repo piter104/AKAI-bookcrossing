@@ -13,14 +13,6 @@
     </style>
 </head>
 <body>
-<div th:if="${user == false}">
-    <p class="InsideContent">Wszystkie</p>
-    <a th:href="@{/(user=true)}" class="InsideContent">Moje</a>
-</div>
-<div th:if="${user == true}">
-    <a th:href="@{/}" class="InsideContent">Wszystkie</a>
-    <p class="InsideContent">Moje</p>
-</div>
 <table>
     <tr>
         <th>ID</th>
@@ -45,5 +37,6 @@
 
 <a href="/logout">Logout</a>
 <a th:href="@{/book/add}">Dodaj ksiażke</a>
+<a href="/" class="InsideContent">Wszystkie książki</a>
 </body>
 </html>
