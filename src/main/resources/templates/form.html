@@ -15,7 +15,7 @@
     <select multiple="multiple" th:field="${book.response.existingTagsList}">
         <option th:each="tag : ${tags}"
                 th:text="${tag.name}"
-                th:value="${tag.name}">Tag name
+                th:value="${tag.id}">Tag name
         </option>
     </select>
     <p>Dodaj Nowe Tagi (np. spring, java, html):</p>

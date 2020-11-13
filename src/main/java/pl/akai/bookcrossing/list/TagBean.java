@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.Tag;
 
+import java.util.List;
+
 @Component
 public class TagBean {
     private final BookBean bookBean;
@@ -22,7 +24,6 @@ public class TagBean {
                 Tag existingTag = bookBean.getTagByName(tag.getName());
                 if (existingTag == null && tag.getName().length() != 0) {
                     bookBean.insertTag(tag);
-                    book.addTag(tag);
                     bookBean.insertBookTag(book.getId(), tag.getId());
                 }
             }
@@ -30,12 +31,10 @@ public class TagBean {
     }
 
     public void insertExistingTags(Book book) {
-        String existingTags = book.getResponse().getExistingTagsList();
-        if (existingTags.length() != 0) {
-            String[] existingTagNames = existingTags.split(",");
-            for (String name : existingTagNames) {
-                Tag existingTag = bookBean.getTagByName(name);
-                bookBean.insertBookTag(book.getId(), existingTag.getId());
+        List<Integer> existingTagsList = book.getResponse().getExistingTagsList();
+        if (existingTagsList != null) {
+            for (Integer tagId : existingTagsList) {
+                bookBean.insertBookTag(book.getId(), tagId);
             }
         }
     }

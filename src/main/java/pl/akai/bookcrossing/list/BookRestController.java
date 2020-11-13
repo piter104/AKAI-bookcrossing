@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
-import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.Opinion;
 
 import java.util.List;
@@ -36,8 +35,8 @@ public class BookRestController {
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
         Book book = new Book();
-        BookFormResponse response = new BookFormResponse();
-        book.setResponse(response);
+//        BookFormResponse response = new BookFormResponse();
+//        book.setResponse(response);
         model.addAttribute("book", book);
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
