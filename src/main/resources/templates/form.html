@@ -12,14 +12,14 @@
     <p>Opis:</p>
     <textarea cols="33" id="book.description" rows="5" th:name="description"></textarea>
     <p> Wybierz tagi:</p>
-    <select multiple="multiple" th:field="${book.response.existingTagsList}">
+    <select multiple="multiple" th:field="${book.response.existingTagsIdList}">
         <option th:each="tag : ${tags}"
                 th:text="${tag.name}"
                 th:value="${tag.id}">Tag name
         </option>
     </select>
     <p>Dodaj Nowe Tagi (np. spring, java, html):</p>
-    <input th:field="${book.response.newTags}" type="text"/>
+    <input th:field="${book.response.newTagsNames}" type="text"/>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
 <a th:href="@{/}">Wróć</a>

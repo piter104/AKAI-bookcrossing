@@ -13,14 +13,14 @@ import pl.akai.bookcrossing.model.Opinion;
 import java.util.List;
 
 @Controller
-public class BookRestController {
+public class BookController {
 
     private final BookBean bookBean;
     private final OpinionBean opinionBean;
     private final TagBean tagBean;
 
     @Autowired
-    public BookRestController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean) {
+    public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean) {
         this.bookBean = bookBean;
         this.opinionBean = opinionBean;
         this.tagBean = tagBean;

@@ -15,7 +15,7 @@ public class TagBean {
     }
 
     public void insertNewTags(Book book) {
-        String newTags = book.getResponse().getNewTags();
+        String newTags = book.getResponse().getNewTagsNames();
         if (newTags != null) {
             String[] tagNames = newTags.split(",");
             for (String name : tagNames) {
@@ -33,9 +33,9 @@ public class TagBean {
     }
 
     public void insertExistingTags(Book book) {
-        Set<Integer> existingTagsList = book.getResponse().getExistingTagsList();
-        if (existingTagsList != null) {
-            for (Integer tagId : existingTagsList) {
+        Set<Integer> existingTagsIdList = book.getResponse().getExistingTagsIdList();
+        if (existingTagsIdList != null) {
+            for (Integer tagId : existingTagsIdList) {
                 bookBean.insertBookTag(book.getId(), tagId);
             }
         }

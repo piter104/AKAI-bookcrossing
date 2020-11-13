@@ -13,10 +13,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookFormResponse {
-    private Set<Integer> existingTagsList = new HashSet<>();
-    private String newTags;
+    private Set<Integer> existingTagsIdList = new HashSet<>();
+    private String newTagsNames;
 
     public void addTagId(Integer tagId) {
-        this.existingTagsList.add(tagId);
+        this.existingTagsIdList.add(tagId);
     }
 }
