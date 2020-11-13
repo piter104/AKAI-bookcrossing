@@ -3,8 +3,12 @@ package pl.akai.bookcrossing.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.Opinion;
 
 import java.util.List;
@@ -31,20 +35,19 @@ public class BookRestController {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
-        String newTags = "";
-        String existingTags = "";
-        model.addAttribute("tag", newTags);
-        model.addAttribute("extag", existingTags);
-        model.addAttribute("book", new Book());
+        Book book = new Book();
+        BookFormResponse response = new BookFormResponse();
+        book.setResponse(response);
+        model.addAttribute("book", book);
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }
 
     @PostMapping("/book/add")
-    public String addBookSubmit(@RequestParam(name = "tag", required = false, defaultValue = "") String newTags, @RequestParam(name = "extag", required = false, defaultValue = "") String existingTags, @ModelAttribute Book book, Model model) {
+    public String addBookSubmit(@ModelAttribute Book book, Model model) {
         bookBean.insertBook(book);
-        tagBean.insertExistingTags(existingTags, book);
-        tagBean.insertNewTags(newTags, book);
+        tagBean.insertExistingTags(book);
+        tagBean.insertNewTags(book);
         model.addAttribute("book", book);
         return "redirect:/book/" + book.getId();
     }
