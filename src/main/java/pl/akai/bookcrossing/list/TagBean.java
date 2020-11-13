@@ -1,7 +1,7 @@
 package pl.akai.bookcrossing.list;
 
 import org.springframework.stereotype.Component;
-import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.Set;
@@ -14,8 +14,8 @@ public class TagBean {
         this.bookBean = bookBean;
     }
 
-    public void insertNewTags(Book book) {
-        String newTags = book.getResponse().getNewTagsNames();
+    public void insertNewTags(BookFormResponse bookFormResponse) {
+        String newTags = bookFormResponse.getNewTagsNames();
         if (newTags != null) {
             String[] tagNames = newTags.split(",");
             for (String name : tagNames) {
@@ -24,19 +24,19 @@ public class TagBean {
                 Tag existingTag = bookBean.getTagByName(tag.getName());
                 if (existingTag == null && tag.getName().length() != 0) {
                     bookBean.insertTag(tag);
-                    bookBean.insertBookTag(book.getId(), tag.getId());
+                    bookBean.insertBookTag(bookFormResponse.getId(), tag.getId());
                 } else {
-                    book.getResponse().addTagId(tag.getId());
+                    bookFormResponse.addTagId(tag.getId());
                 }
             }
         }
     }
 
-    public void insertExistingTags(Book book) {
-        Set<Integer> existingTagsIdList = book.getResponse().getExistingTagsIdList();
+    public void insertExistingTags(BookFormResponse bookFormResponse) {
+        Set<Integer> existingTagsIdList = bookFormResponse.getExistingTagsIdList();
         if (existingTagsIdList != null) {
             for (Integer tagId : existingTagsIdList) {
-                bookBean.insertBookTag(book.getId(), tagId);
+                bookBean.insertBookTag(bookFormResponse.getId(), tagId);
             }
         }
     }
