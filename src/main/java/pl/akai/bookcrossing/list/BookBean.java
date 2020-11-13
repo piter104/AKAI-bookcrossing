@@ -40,8 +40,13 @@ public class BookBean {
         return bookDao.getInsertedBookIdByUserId(user.getId());
     }
 
-    public List<Book> getCurrentUserBooks() {
+    public List<Book> getBooksReadByCurrentUser() {
         User user = currentUserService.getCurrentUser();
-        return bookDao.getUserBooksByUserId(user.getId());
+        return bookDao.getBooksByReaderId(user.getId());
+    }
+
+    public Object getBooksOwnedByCurrentUser() {
+        User user = currentUserService.getCurrentUser();
+        return bookDao.getBooksByOwnerId(user.getId());
     }
 }

@@ -32,7 +32,8 @@ public class BookRestController {
 
     @GetMapping("/my-books")
     public String myBooksList(Model model) {
-        model.addAttribute("books", bookBean.getCurrentUserBooks());
+        model.addAttribute("books_owner", bookBean.getBooksOwnedByCurrentUser());
+        model.addAttribute("books_reader", bookBean.getBooksReadByCurrentUser());
         return "my_books";
     }
 

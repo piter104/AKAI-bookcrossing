@@ -14,5 +14,7 @@ public interface BookDao {
 
     int getInsertedBookIdByUserId(int id);
 
-    List<Book> getUserBooksByUserId(int id);
+    List<Book> getBooksByOwnerId(int id);
+
+    List<Book> getBooksByReaderId(int id);
 }

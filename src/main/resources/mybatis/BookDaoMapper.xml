@@ -34,10 +34,16 @@
         LIMIT 1;
     </select>
 
-    <select id="getUserBooksByUserId" resultMap="fullBookMap">
+    <select id="getBooksByOwnerId" resultMap="fullBookMap">
         SELECT *
         FROM tb_book
-        WHERE owner_id = #{user_id} OR reader_id = #{user_id};
+        WHERE owner_id = #{user_id};
+    </select>
+
+    <select id="getBooksByReaderId" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE reader_id = #{user_id};
     </select>
 
     <insert id="insertBook">
