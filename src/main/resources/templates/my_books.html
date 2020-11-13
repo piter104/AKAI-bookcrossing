@@ -13,6 +13,27 @@
     </style>
 </head>
 <body>
+<div>Moje książki udostępnione innym</div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Opis</th>
+        <th>Obecny Właściciel</th>
+        <th>Szczegóły</th>
+    </tr>
+    <tr th:each="book : ${books_owner}">
+        <td th:text="${book.id}">ID</td>
+        <td th:text="${book.title}">Tytuł</td>
+        <td th:text="${book.author}">Autor</td>
+        <td th:text="${book.description}">Opis</td>
+        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+    </tr>
+</table>
+
+<div>Moje ksiażki udostępnione przez innych</div>
 <table>
     <tr>
         <th>ID</th>
@@ -20,16 +41,14 @@
         <th>Autor</th>
         <th>Opis</th>
         <th>Właściciel</th>
-        <th>Obecny Właściciel</th>
         <th>Szczegóły</th>
     </tr>
-    <tr th:each="book : ${books}">
+    <tr th:each="book : ${books_reader}">
         <td th:text="${book.id}">ID</td>
         <td th:text="${book.title}">Tytuł</td>
         <td th:text="${book.author}">Autor</td>
         <td th:text="${book.description}">Opis</td>
         <td th:text="${book.owner?.fullName}">Właściciel</td>
-        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
         <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
     </tr>
 </table>
@@ -37,6 +56,6 @@
 
 <a href="/logout">Logout</a>
 <a th:href="@{/book/add}">Dodaj ksiażke</a>
-<a href="/my-books" class="InsideContent">Moje książki</a>
+<a href="/" class="InsideContent">Wszystkie książki</a>
 </body>
 </html>

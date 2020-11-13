@@ -35,4 +35,15 @@ public class BookDaoImpl implements BookDao {
     public int getInsertedBookIdByUserId(int id) {
         return bookMapper.getInsertedBookIdByUserId(id);
     }
+
+    @Override
+    public List<Book> getBooksByOwnerId(int id) {
+        return bookMapper.getBooksByOwnerId(id);
+    }
+
+    @Override
+    public List<Book> getBooksByReaderId(int id) {
+        return bookMapper.getBooksByReaderId(id);
+    }
+
 }

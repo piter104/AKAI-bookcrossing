@@ -30,6 +30,13 @@ public class BookRestController {
         return "index";
     }
 
+    @GetMapping("/my-books")
+    public String myBooksList(Model model) {
+        model.addAttribute("books_owner", bookBean.getBooksOwnedByCurrentUser());
+        model.addAttribute("books_reader", bookBean.getBooksReadByCurrentUser());
+        return "my_books";
+    }
+
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book());

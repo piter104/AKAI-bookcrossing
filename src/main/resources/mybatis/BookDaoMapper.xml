@@ -34,6 +34,18 @@
         LIMIT 1;
     </select>
 
+    <select id="getBooksByOwnerId" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE owner_id = #{user_id};
+    </select>
+
+    <select id="getBooksByReaderId" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE reader_id = #{user_id};
+    </select>
+
     <insert id="insertBook">
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});

@@ -17,4 +17,8 @@ public interface BookDaoMapper {
     int getInsertedBookIdByUserId(@Param("user_id") int id);
 
     void insertBook(@Param("book") Book book);
+
+    List<Book> getBooksByOwnerId(@Param("user_id") int id);
+
+    List<Book> getBooksByReaderId(@Param("user_id") int id);
 }
