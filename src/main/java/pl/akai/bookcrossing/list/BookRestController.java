@@ -34,10 +34,7 @@ public class BookRestController {
 
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
-        Book book = new Book();
-//        BookFormResponse response = new BookFormResponse();
-//        book.setResponse(response);
-        model.addAttribute("book", book);
+        model.addAttribute("book", new Book());
         model.addAttribute("tags", bookBean.getAllTags());
         return "form";
     }

@@ -21,7 +21,4 @@ public class Book {
     private User reader;
     private BookFormResponse response;
     private List<Tag> tagList = new ArrayList<>();
-    public void addTag(Tag tag) {
-        this.tagList.add(tag);
-    }
 }
