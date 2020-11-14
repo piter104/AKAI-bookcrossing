@@ -9,3 +9,9 @@ VALUES ('Czysty kod. Podręcznik dobrego programisty', 'Robert C. Martin', 'Bard
 
 INSERT INTO bookcrossing.tb_opinion (rating, book_id, author_id)
 VALUES (6, 1, 1);
+
+INSERT INTO bookcrossing.tb_tag (name)
+VALUES ('SPRING');
+
+# INSERT INTO bookcrossing.tb_book_tags (book_id, tag_id)
+# VALUES (1,1);

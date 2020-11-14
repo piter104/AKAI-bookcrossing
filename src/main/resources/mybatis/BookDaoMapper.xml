@@ -9,9 +9,17 @@
         <result column="description" property="description" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="fullBookMap" type="Book">
-        <association column="owner_id"  property="owner" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
-        <association column="reader_id"  property="reader" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+    <resultMap id="fullBookMap" extends="baseBookMap" type="Book">
+        <association column="owner_id" property="owner" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="reader_id" property="reader" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
+    </resultMap>
+
+    <resultMap id="bookTagsMap" type="Tag">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getAllBooks" resultMap="fullBookMap">
@@ -20,19 +28,16 @@
     </select>
 
     <select id="getBookById" resultMap="fullBookMap">
-        SELECT * 
+        SELECT *
         FROM tb_book
         WHERE id = #{id}
     </select>
 
-    <select id="getInsertedBookIdByUserId" resultType="INTEGER">
-        SELECT b.id
-        FROM tb_book b
-        INNER JOIN tb_user u ON b.owner_id = u.id
-        WHERE u.id = #{user_id}
-        ORDER BY b.id DESC
-        LIMIT 1;
-    </select>
+
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
+        INSERT INTO tb_book (title, author, description, owner_id, reader_id)
+        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
+    </insert>
 
     <select id="getBooksByOwnerId" resultMap="fullBookMap">
         SELECT *
@@ -46,9 +51,40 @@
         WHERE reader_id = #{user_id};
     </select>
 
-    <insert id="insertBook">
-        INSERT INTO tb_book (title, author, description, owner_id, reader_id)
-        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
+    <select id="getTagsByBookId" resultMap="bookTagsMap">
+        SELECT t.name
+        FROM tb_book_tags bt
+                 INNER JOIN tb_tag t ON (t.id = bt.tag_id)
+        WHERE bt.book_id = #{id};
+    </select>
+
+    <select id="getBooksByTagId" resultMap="fullBookMap">
+        SELECT b.*
+        FROM tb_book_tags bt
+                 INNER JOIN tb_book b on bt.book_id = b.id
+        WHERE bt.tag_id = #{id};
+    </select>
+
+    <insert id="insertTag" useGeneratedKeys="true" keyProperty="tag.id" keyColumn="id">
+        INSERT INTO tb_tag (name)
+        VALUES (upper(#{tag.name}));
+    </insert>
+
+    <select id="getAllTags" resultMap="bookTagsMap">
+        SELECT *
+        FROM tb_tag;
+    </select>
+
+    <select id="getTagByName" resultMap="bookTagsMap">
+        SELECT *
+        FROM tb_tag
+        WHERE name like upper(#{name})
+        LIMIT 1;
+    </select>
+
+    <insert id="insertBookTag">
+        INSERT INTO tb_book_tags (book_id, tag_id)
+        VALUES (#{bookId}, #{tagId});
     </insert>
 
 </mapper>
