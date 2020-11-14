@@ -30,13 +30,26 @@
     <select id="getBookById" resultMap="fullBookMap">
         SELECT *
         FROM tb_book
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
+
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
     </insert>
+
+    <select id="getBooksByOwnerId" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE owner_id = #{user_id};
+    </select>
+
+    <select id="getBooksByReaderId" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE reader_id = #{user_id};
+    </select>
 
     <select id="getTagsByBookId" resultMap="bookTagsMap">
         SELECT t.name
@@ -73,4 +86,5 @@
         INSERT INTO tb_book_tags (book_id, tag_id)
         VALUES (#{bookId}, #{tagId});
     </insert>
+
 </mapper>

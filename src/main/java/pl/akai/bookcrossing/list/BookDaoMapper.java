@@ -15,13 +15,19 @@ public interface BookDaoMapper {
 
     Book getBookById(@Param("id") int id);
 
+    int getInsertedBookIdByUserId(@Param("user_id") int id);
+
     void insertBook(@Param("book") Book book);
+
+    void insertTag(@Param("tag") Tag tag);
+
+    List<Book> getBooksByOwnerId(@Param("user_id") int id);
+
+    List<Book> getBooksByReaderId(@Param("user_id") int id);
 
     List<Tag> getTagsByBookId(@Param("id") int id);
 
     List<Book> getBooksByTagId(@Param("id") int id);
-
-    void insertTag(@Param("tag") Tag tag);
 
     List<Tag> getAllTags();
 

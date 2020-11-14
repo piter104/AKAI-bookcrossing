@@ -13,6 +13,10 @@ public interface BookDao {
 
     void insertBook(Book book);
 
+    List<Book> getBooksByOwnerId(int id);
+
+    List<Book> getBooksByReaderId(int id);
+
     List<Tag> getTagsByBookId(int id);
 
     List<Book> getBooksByTagId(int id);

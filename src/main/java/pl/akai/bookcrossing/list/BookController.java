@@ -33,6 +33,13 @@ public class BookController {
         return "index";
     }
 
+    @GetMapping("/my-books")
+    public String myBooksList(Model model) {
+        model.addAttribute("books_owner", bookBean.getBooksOwnedByCurrentUser());
+        model.addAttribute("books_reader", bookBean.getBooksReadByCurrentUser());
+        return "my_books";
+    }
+
     @GetMapping("/book/add")
     public String addBookForm(Model model) {
         model.addAttribute("book", new BookFormResponse());
@@ -51,7 +58,6 @@ public class BookController {
 
     @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(name = "id") Integer id, Model model) {
-        model.addAttribute("tags", bookBean.getTagsByBookId(id));
         bookDetailsInitialization(model, id, false);
         return "book-details";
     }
@@ -65,6 +71,7 @@ public class BookController {
 
     private void bookDetailsInitialization(Model model, Integer id, boolean isSendSuccess) {
         Book book = bookBean.getBookById(id);
+        model.addAttribute("tags", bookBean.getTagsByBookId(id));
         List<Opinion> opinions = opinionBean.getOpinionsByBookId(id);
         model.addAttribute("isSendSuccess", isSendSuccess);
         model.addAttribute("book", book);

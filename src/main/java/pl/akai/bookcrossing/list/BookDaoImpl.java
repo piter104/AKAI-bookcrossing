@@ -33,6 +33,16 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public List<Book> getBooksByOwnerId(int id) {
+        return bookMapper.getBooksByOwnerId(id);
+    }
+
+    @Override
+    public List<Book> getBooksByReaderId(int id) {
+        return bookMapper.getBooksByReaderId(id);
+    }
+
+    @Override
     public List<Tag> getTagsByBookId(int id) {
         return bookMapper.getTagsByBookId(id);
     }
@@ -61,5 +71,4 @@ public class BookDaoImpl implements BookDao {
     public void insertBookTag(int bookId, int tagId) {
         bookMapper.insertBookTag(bookId, tagId);
     }
-
 }
