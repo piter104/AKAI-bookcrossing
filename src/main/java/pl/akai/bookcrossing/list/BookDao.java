@@ -1,24 +1,12 @@
 package pl.akai.bookcrossing.list;
 
 import pl.akai.bookcrossing.model.Book;
-<<<<<<< HEAD
-=======
 import pl.akai.bookcrossing.model.Tag;
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 
 import java.util.List;
 
 public interface BookDao {
 
-<<<<<<< HEAD
-    Book findBookById(int bookId);
-
-    List<Book> findAllBooks();
-
-    void insertBook(Book book);
-
-
-=======
     Book getBookById(int bookId);
 
     List<Book> getAllBooks();
@@ -40,5 +28,4 @@ public interface BookDao {
     Tag getTagByName(String tagName);
 
     void insertBookTag(int bookId, int tagId);
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 }

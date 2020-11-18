@@ -13,26 +13,16 @@
 <h3>Opinie</h3>
 <table>
     <tr>
-<<<<<<< HEAD
-        <th>Uzytkownik</th>
-=======
         <th>Użytkownik</th>
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
         <th>Ocena</th>
         <th>Opis</th>
     </tr>
     <tr th:each="opinion : ${opinions}">
-<<<<<<< HEAD
-        <td th:text="${opinion.author.fullName}">Uzytkownik</td>
-=======
         <td th:text="${opinion.author.fullName}">Użytkownik</td>
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
         <td th:text="${opinion.rating}">Ocena</td>
         <td th:text="${opinion.description}">Opis</td>
     </tr>
 </table>
-<<<<<<< HEAD
-=======
 <h3>Dodaj Opinię</h3>
 <form action="#" method="post" th:action="@{/book/{id}(id = ${book.id})}" th:object="${opinion}">
     <p>Opinia: <select id="rating" name="rating">
@@ -64,6 +54,5 @@
     </tr>
 </table>
 <a th:href="@{/}">Wroć do strony głównej</a>
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 </body>
 </html>

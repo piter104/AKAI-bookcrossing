@@ -3,10 +3,7 @@ package pl.akai.bookcrossing.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Book;
-<<<<<<< HEAD
-=======
 import pl.akai.bookcrossing.model.Tag;
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 
 import java.util.List;
 
@@ -21,30 +18,17 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-<<<<<<< HEAD
-    public Book findBookById(int bookId) {
-=======
     public Book getBookById(int bookId) {
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
         return bookMapper.getBookById(bookId);
     }
 
     @Override
-<<<<<<< HEAD
-    public List<Book> findAllBooks() {
-=======
     public List<Book> getAllBooks() {
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
         return bookMapper.getAllBooks();
     }
 
     @Override
     public void insertBook(Book book) {
-<<<<<<< HEAD
-
-        bookMapper.insertBook(book);
-    }
-=======
         bookMapper.insertBook(book);
     }
 
@@ -87,5 +71,4 @@ public class BookDaoImpl implements BookDao {
     public void insertBookTag(int bookId, int tagId) {
         bookMapper.insertBookTag(bookId, tagId);
     }
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 }

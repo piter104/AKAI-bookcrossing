@@ -9,11 +9,6 @@
         <result column="description" property="description" jdbcType="VARCHAR"/>
     </resultMap>
 
-<<<<<<< HEAD
-    <resultMap id="fullBookMap" type="Book">
-        <association column="owner_id"  property="owner" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
-        <association column="reader_id"  property="reader" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
-=======
     <resultMap id="fullBookMap" extends="baseBookMap" type="Book">
         <association column="owner_id" property="owner" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
@@ -25,7 +20,6 @@
     <resultMap id="bookTagsMap" type="Tag">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
     </resultMap>
 
     <select id="getAllBooks" resultMap="fullBookMap">
@@ -34,27 +28,17 @@
     </select>
 
     <select id="getBookById" resultMap="fullBookMap">
-<<<<<<< HEAD
-        SELECT * 
-=======
         SELECT *
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
         FROM tb_book
         WHERE id = #{id}
     </select>
 
-<<<<<<< HEAD
-    <insert id="insertBook">
-=======
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
         VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
     </insert>
 
-<<<<<<< HEAD
-=======
     <select id="getBooksByOwnerId" resultMap="fullBookMap">
         SELECT *
         FROM tb_book
@@ -103,5 +87,4 @@
         VALUES (#{bookId}, #{tagId});
     </insert>
 
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 </mapper>

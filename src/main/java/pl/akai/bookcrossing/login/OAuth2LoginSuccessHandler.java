@@ -5,10 +5,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.model.User;
-<<<<<<< HEAD
-import pl.akai.bookcrossing.user.UserDao;
-=======
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
