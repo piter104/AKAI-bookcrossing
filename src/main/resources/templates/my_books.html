@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>td {
         border: 1px solid black;
-<<<<<<< HEAD
-    }</style>
-=======
     }
 
     .InsideContent {
         display: inline-block;
     }
     </style>
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 </head>
 <body>
+<div>Moje książki udostępnione innym</div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Opis</th>
+        <th>Obecny Właściciel</th>
+        <th>Szczegóły</th>
+    </tr>
+    <tr th:each="book : ${books_owner}">
+        <td th:text="${book.id}">ID</td>
+        <td th:text="${book.title}">Tytuł</td>
+        <td th:text="${book.author}">Autor</td>
+        <td th:text="${book.description}">Opis</td>
+        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+    </tr>
+</table>
+
+<div>Moje ksiażki udostępnione przez innych</div>
 <table>
     <tr>
         <th>ID</th>
@@ -24,29 +41,21 @@
         <th>Autor</th>
         <th>Opis</th>
         <th>Właściciel</th>
-        <th>Obecny Właściciel</th>
         <th>Szczegóły</th>
     </tr>
-    <tr th:each="book : ${books}">
+    <tr th:each="book : ${books_reader}">
         <td th:text="${book.id}">ID</td>
         <td th:text="${book.title}">Tytuł</td>
         <td th:text="${book.author}">Autor</td>
         <td th:text="${book.description}">Opis</td>
         <td th:text="${book.owner?.fullName}">Właściciel</td>
-        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
         <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
     </tr>
 </table>
 
-<<<<<<< HEAD
-<div th:text="${name}"></div>
-<a href="/logout">Logout</a>
-<a th:href="@{/book/add}">Dodaj ksiażke</a>
-=======
 
 <a href="/logout">Logout</a>
 <a th:href="@{/book/add}">Dodaj ksiażke</a>
-<a class="InsideContent" href="/my-books">Moje książki</a>
->>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
+<a class="InsideContent" href="/">Wszystkie książki</a>
 </body>
 </html>

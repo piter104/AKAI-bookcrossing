@@ -1,5 +1,6 @@
 version: '2.0'
 services:
+<<<<<<< HEAD
   # spring:
   #   build:
   #     dockerfile: Dockerfile
@@ -8,6 +9,14 @@ services:
   #     - "8080:8080"
   #   depends_on:
   #     - db
+=======
+#  spring:
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+#    ports:
+#      - "8080:8080"
+>>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
   db:
     image: mysql:8
     environment:

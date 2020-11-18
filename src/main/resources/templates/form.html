@@ -1,11 +1,16 @@
 <!DOCTYPE HTML>
+<<<<<<< HEAD
 <html xmlns:th="https://www.thymeleaf.org">
+=======
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+>>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 <head>
     <title>Formularz Dodania Książki</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h1>Formularz Dodania Książki</h1>
+<<<<<<< HEAD
 <form action="#" method="post" th:action="@{/book/add}" th:object="${book}">
     <p>Tytuł: <input required th:field="*{title}" type="text"/></p>
     <p>Autor: <input required th:field="*{author}" type="text"/></p>
@@ -13,5 +18,24 @@
 </textarea></p>
     <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
 </form>
+=======
+<form action="#" method="post" th:action="@{/book/add}">
+    <p>Tytuł: <input required th:name="title" th:value="${book.title}" type="text"/></p>
+    <p>Autor: <input required th:name="author" th:value="${book.author}" type="text"/></p>
+    <p>Opis:</p>
+    <textarea cols="33" id="book.description" rows="5" th:name="description"></textarea>
+    <p> Wybierz tagi:</p>
+    <select multiple="multiple" th:field="${book.existingTagsIdList}">
+        <option th:each="tag : ${tags}"
+                th:text="${tag.name}"
+                th:value="${tag.id}">Tag name
+        </option>
+    </select>
+    <p>Dodaj Nowe Tagi (np. spring, java, html):</p>
+    <input th:field="${book.newTagsNames}" type="text"/>
+    <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
+</form>
+<a th:href="@{/}">Wróć</a>
+>>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
 </body>
 </html>

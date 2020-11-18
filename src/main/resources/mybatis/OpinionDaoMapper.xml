@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pl.akai.bookcrossing.opinion.OpinionDaoMapper">
@@ -31,3 +32,38 @@
     </update>
 
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pl.akai.bookcrossing.opinion.OpinionDaoMapper">
+
+    <resultMap id="baseOpinionMap" type="Opinion">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="rating" property="rating" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="extendedOpinionMap" type="Opinion" extends="baseOpinionMap">
+        <association column="author_id"  property="author" javaType="User" select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+    </resultMap>
+
+    <select id="getOpinionsByBookId" resultMap="extendedOpinionMap">
+        SELECT book_id, rating, description, author_id
+        FROM tb_opinion
+        WHERE book_id = #{id};
+    </select>
+
+    <insert id="insertOpinion">
+        INSERT INTO tb_opinion (rating, description, book_id, author_id)
+        VALUES (#{opinion.rating}, #{opinion.description}, #{bookId}, #{opinion.author.id});
+    </insert>
+
+    <update id="updateOpinion">
+        UPDATE tb_opinion
+        SET rating      = #{opinion.rating},
+            description = #{opinion.description}
+        WHERE id = #{opinion.id};
+    </update>
+
+</mapper>
+>>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="pl.akai.bookcrossing.user.UserDaoMapper">
@@ -26,3 +27,33 @@
     </insert>
 
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pl.akai.bookcrossing.login.UserDaoMapper">
+
+    <resultMap id="baseUserMap" type="User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="full_name" property="fullName" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getUserById" resultMap="baseUserMap">
+        SELECT *
+        FROM tb_user
+        WHERE id = #{id};
+    </select>
+
+    <select id="getUserByEmail" resultMap="baseUserMap">
+        SELECT *
+        FROM tb_user
+        WHERE email = #{email};
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO tb_user (full_name, email)
+        VALUES (#{user.fullName}, #{user.email});
+    </insert>
+
+</mapper>
+>>>>>>> b20192104aac97dfedbfbc6b91234462c031d1d1
