@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pl.akai.bookcrossing.list.BookDaoMapper">
+
+    <resultMap id="baseBookMap" type="Book">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="fullBookMap" type="Book">
+        <association column="owner_id"  property="owner" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
+        <association column="reader_id"  property="reader" javaType="User" select="pl.akai.bookcrossing.user.UserDaoMapper.getUserById"/>
+    </resultMap>
+
+    <select id="getAllBooks" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book;
+    </select>
+
+    <select id="getBookById" resultMap="fullBookMap">
+        SELECT * 
+        FROM tb_book
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertBook">
+        INSERT INTO tb_book (title, author, description, owner_id, reader_id)
+        VALUES (#{book.title}, #{book.author}, #{book.description}, #{book.owner.id}, #{book.reader.id});
+    </insert>
+
+</mapper>

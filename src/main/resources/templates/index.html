@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>td {
+        border: 1px solid black;
+    }</style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Opis</th>
+        <th>Właściciel</th>
+        <th>Obecny Właściciel</th>
+        <th>Szczegóły</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}">ID</td>
+        <td th:text="${book.title}">Tytuł</td>
+        <td th:text="${book.author}">Autor</td>
+        <td th:text="${book.description}">Opis</td>
+        <td th:text="${book.owner?.fullName}">Właściciel</td>
+        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+    </tr>
+</table>
+
+<div th:text="${name}"></div>
+<a href="/logout">Logout</a>
+<a th:href="@{/book/add}">Dodaj ksiażke</a>
+</body>
+</html>

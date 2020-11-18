@@ -1,0 +1,19 @@
+version: '2.0'
+services:
+  # spring:
+  #   build:
+  #     dockerfile: Dockerfile
+  #     context: .
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - db
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=q1w2e3r4
+      - MYSQL_DATABASE=bookcrossing
+      - MYSQL_USER=sa
+      - MYSQL_PASSWORD=q1w2e3r4
+    ports:
+         - "3306:3306"

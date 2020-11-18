@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły książki</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/book-details.css}"/>
+</head>
+<body>
+<h2 th:text="${book.title}"/>
+<p th:text="'Autor: ' + ${book.author}"/>
+<p th:text="'Opis: ' + ${book.description}"/>
+<br>
+<h3>Opinie</h3>
+<table>
+    <tr>
+        <th>Uzytkownik</th>
+        <th>Ocena</th>
+        <th>Opis</th>
+    </tr>
+    <tr th:each="opinion : ${opinions}">
+        <td th:text="${opinion.author.fullName}">Uzytkownik</td>
+        <td th:text="${opinion.rating}">Ocena</td>
+        <td th:text="${opinion.description}">Opis</td>
+    </tr>
+</table>
+</body>
+</html>
