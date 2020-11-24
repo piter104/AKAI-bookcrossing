@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{/styles/login_page.css}"/> -->
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>td {
-        border: 1px solid black;
-    }
-
-    .InsideContent {
-        display: inline-block;
-    }
+    <style>
+        th{
+            font-size: 1rem;
+        }
+        td{
+            font-size: .9rem;
+        }
     </style>
 </head>
 <body>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Tytuł</th>
-        <th>Autor</th>
-        <th>Opis</th>
-        <th>Właściciel</th>
-        <th>Obecny Właściciel</th>
-        <th>Szczegóły</th>
-    </tr>
-    <tr th:each="book : ${books}">
-        <td th:text="${book.id}">ID</td>
-        <td th:text="${book.title}">Tytuł</td>
-        <td th:text="${book.author}">Autor</td>
-        <td th:text="${book.description}">Opis</td>
-        <td th:text="${book.owner?.fullName}">Właściciel</td>
-        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
-        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
-    </tr>
-</table>
+<div class="container-md mt-4">
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Opis</th>
+            <th>Właściciel</th>
+            <th>Obecny Właściciel</th>
+            <th>Szczegóły</th>
+        </tr>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}">ID</td>
+            <td th:text="${book.title}">Tytuł</td>
+            <td th:text="${book.author}">Autor</td>
+            <td th:text="${book.description}">Opis</td>
+            <td th:text="${book.owner?.fullName}">Właściciel</td>
+            <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+            <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+        </tr>
+    </table>
 
-
-<a href="/logout">Logout</a>
-<a th:href="@{/book/add}">Dodaj ksiażke</a>
-<a class="InsideContent" href="/my-books">Moje książki</a>
+    <div class="form-group mt-4">
+        <a class="btn btn-warning col-md-2 mr-3 mt-2" th:href="@{/book/add}">Dodaj ksiażke</a>
+        <a class="InsideContent btn btn-warning col-md-2 mt-2" href="/my-books">Moje książki</a>
+        <a class="btn btn-primary btn-block col-md-2 col-lg-1 mt-4" href="/logout">Logout</a>
+    </div>
+</div>
 </body>
 </html>

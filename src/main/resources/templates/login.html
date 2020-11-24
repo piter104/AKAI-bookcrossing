@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
 </head>
 <body>
-<h1>Witaj na Bookcrossingu AKAI</h1>
-<h2>Aby przejśc dalej zaloguj się przy użyciu konta AKAI</h2>
-<div><a th:href="@{/oauth2/authorization/google}">Login with Google</a></div>
+<div class="container text-center mt-5">
+
+    <h1>Witaj na Bookcrossingu <span class="text-warning">AKAI</span></h1>
+    <h2>Aby przejśc dalej zaloguj się przy użyciu konta AKAI</span></h2>
+
+    <div class="mt-4">
+        <a class="text-primary h4" th:href="@{/oauth2/authorization/google}">Login with Google</a>
+    </div>
+
+</div>
 </body>
 </html>

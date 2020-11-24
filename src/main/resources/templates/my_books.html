@@ -3,59 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>td {
-        border: 1px solid black;
-    }
-
-    .InsideContent {
-        display: inline-block;
-    }
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <style>
+        th{
+            font-size: 1rem;
+        }
+        td{
+            font-size: .9rem;
+        }
     </style>
 </head>
 <body>
-<div>Moje książki udostępnione innym</div>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Tytuł</th>
-        <th>Autor</th>
-        <th>Opis</th>
-        <th>Obecny Właściciel</th>
-        <th>Szczegóły</th>
-    </tr>
-    <tr th:each="book : ${books_owner}">
-        <td th:text="${book.id}">ID</td>
-        <td th:text="${book.title}">Tytuł</td>
-        <td th:text="${book.author}">Autor</td>
-        <td th:text="${book.description}">Opis</td>
-        <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
-        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
-    </tr>
-</table>
+<div class="container">
+        <p class="h3 my-4">Moje książki udostępnione innym</p>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Opis</th>
+            <th>Obecny Właściciel</th>
+            <th>Szczegóły</th>
+        </tr>
+        <tr th:each="book : ${books_owner}">
+            <td th:text="${book.id}">ID</td>
+            <td th:text="${book.title}">Tytuł</td>
+            <td th:text="${book.author}">Autor</td>
+            <td th:text="${book.description}">Opis</td>
+            <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
+            <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+        </tr>
+    </table>
 
-<div>Moje ksiażki udostępnione przez innych</div>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Tytuł</th>
-        <th>Autor</th>
-        <th>Opis</th>
-        <th>Właściciel</th>
-        <th>Szczegóły</th>
-    </tr>
-    <tr th:each="book : ${books_reader}">
-        <td th:text="${book.id}">ID</td>
-        <td th:text="${book.title}">Tytuł</td>
-        <td th:text="${book.author}">Autor</td>
-        <td th:text="${book.description}">Opis</td>
-        <td th:text="${book.owner?.fullName}">Właściciel</td>
-        <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
-    </tr>
-</table>
+    <p class="h5 my-4">Moje ksiażki udostępnione przez innych</p>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Opis</th>
+            <th>Właściciel</th>
+            <th>Szczegóły</th>
+        </tr>
+        <tr th:each="book : ${books_reader}">
+            <td th:text="${book.id}">ID</td>
+            <td th:text="${book.title}">Tytuł</td>
+            <td th:text="${book.author}">Autor</td>
+            <td th:text="${book.description}">Opis</td>
+            <td th:text="${book.owner?.fullName}">Właściciel</td>
+            <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
+        </tr>
+    </table>
 
+    <div class="form-group mt-4">
+        <a class="btn btn-warning col-md-2 mr-3 mt-2" th:href="@{/book/add}">Dodaj ksiażke</a>
+        <a class="InsideContent btn btn-warning col-md-2 mt-2" href="/">Wszystkie książki</a>
+        <a class="btn btn-primary btn-block col-md-2 col-lg-1 mt-4" href="/logout">Logout</a>
+    </div>
 
-<a href="/logout">Logout</a>
-<a th:href="@{/book/add}">Dodaj ksiażke</a>
-<a class="InsideContent" href="/">Wszystkie książki</a>
+</div>
 </body>
 </html>
