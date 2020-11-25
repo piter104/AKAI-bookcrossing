@@ -28,4 +28,6 @@ public interface BookDao {
     Tag getTagByName(String tagName);
 
     void insertBookTag(int bookId, int tagId);
+
+    void updateReader(int bookId, int readerId);
 }

@@ -87,4 +87,10 @@
         VALUES (#{bookId}, #{tagId});
     </insert>
 
+    <update id="updateReader">
+        UPDATE tb_book
+        SET reader_id = #{readerId}
+        WHERE id = #{bookId};
+    </update>
+
 </mapper>

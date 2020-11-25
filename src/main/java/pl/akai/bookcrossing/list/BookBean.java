@@ -69,4 +69,9 @@ public class BookBean {
         User user = currentUserService.getCurrentUser();
         return bookDao.getBooksByOwnerId(user.getId());
     }
+
+    public void updateReader(int bookId) {
+        User user = currentUserService.getCurrentUser();
+        bookDao.updateReader(bookId, user.getId());
+    }
 }

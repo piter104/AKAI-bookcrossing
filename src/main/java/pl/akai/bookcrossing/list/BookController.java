@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.Opinion;
@@ -19,18 +20,26 @@ public class BookController {
     private final BookBean bookBean;
     private final OpinionBean opinionBean;
     private final TagBean tagBean;
+    private final CurrentUserService currentUserService;
 
     @Autowired
-    public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean) {
+    public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean, CurrentUserService currentUserService) {
         this.bookBean = bookBean;
         this.opinionBean = opinionBean;
         this.tagBean = tagBean;
+        this.currentUserService = currentUserService;
     }
 
     @GetMapping("/")
     public String booksList(Model model) {
         model.addAttribute("books", bookBean.getAllBooks());
         return "index";
+    }
+
+    @GetMapping("/book/{id}/rent")
+    public String bookRental(@PathVariable(name = "id") Integer bookId) {
+        bookBean.updateReader(bookId);
+        return "redirect:/my-books";
     }
 
     @GetMapping("/my-books")

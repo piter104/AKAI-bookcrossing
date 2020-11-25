@@ -71,4 +71,9 @@ public class BookDaoImpl implements BookDao {
     public void insertBookTag(int bookId, int tagId) {
         bookMapper.insertBookTag(bookId, tagId);
     }
+
+    @Override
+    public void updateReader(int bookId, int readerId) {
+        bookMapper.updateReader(bookId, readerId);
+    }
 }

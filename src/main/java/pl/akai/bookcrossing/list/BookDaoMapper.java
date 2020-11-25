@@ -34,4 +34,6 @@ public interface BookDaoMapper {
     Tag getTagByName(@Param("name") String tagName);
 
     void insertBookTag(@Param("bookId") int bookId, @Param("tagId") int tagId);
+
+    void updateReader(@Param("bookId") int bookId, @Param("readerId") int readerId);
 }

@@ -9,6 +9,7 @@
 <h2 th:text="${book.title}"/>
 <p th:text="'Autor: ' + ${book.author}"/>
 <p th:text="'Opis: ' + ${book.description}"/>
+<p><a th:href="@{/book/{id}/rent(id = ${book.id})}">Wypożycz</a></p>
 <br>
 <h3>Opinie</h3>
 <table>
