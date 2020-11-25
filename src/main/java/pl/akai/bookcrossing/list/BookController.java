@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.Opinion;
@@ -22,7 +21,7 @@ public class BookController {
     private final TagBean tagBean;
 
     @Autowired
-    public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean, CurrentUserService currentUserService) {
+    public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean) {
         this.bookBean = bookBean;
         this.opinionBean = opinionBean;
         this.tagBean = tagBean;
