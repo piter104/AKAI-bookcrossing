@@ -74,8 +74,7 @@ public class BookController {
     @PostMapping("/book/{id}")
     public String opinionSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute Opinion opinion, Model model) {
         opinionBean.insertOpinion(opinion, id);
-        bookDetailsInitialization(model, id, true);
-        return "book-details";
+        return "redirect:/book/" + id;
     }
 
     private void bookDetailsInitialization(Model model, Integer id, boolean isSendSuccess) {
