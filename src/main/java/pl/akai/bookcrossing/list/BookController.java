@@ -20,14 +20,12 @@ public class BookController {
     private final BookBean bookBean;
     private final OpinionBean opinionBean;
     private final TagBean tagBean;
-    private final CurrentUserService currentUserService;
 
     @Autowired
     public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean, CurrentUserService currentUserService) {
         this.bookBean = bookBean;
         this.opinionBean = opinionBean;
         this.tagBean = tagBean;
-        this.currentUserService = currentUserService;
     }
 
     @GetMapping("/")
