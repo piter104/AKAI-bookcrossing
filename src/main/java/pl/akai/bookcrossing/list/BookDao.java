@@ -32,8 +32,8 @@ public interface BookDao {
 
     void updateReader(int bookId, int readerId);
 
-    void insertBookUserRequest(int requesterId, int ownerId);
+    void insertBookUserRequest(BookRentRequest bookRentRequest);
 
-    List<BookRentRequest> getBookRentRequestsByBookId(int ownerId);
+    List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId);
 
 }

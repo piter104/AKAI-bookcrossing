@@ -43,7 +43,7 @@ public class BookController {
 
     @GetMapping("/my-books")
     public String myBooksList(Model model) {
-        List<BookRentRequest> users = bookBean.getBookRentRequestsByBookId();
+        List<BookRentRequest> users = bookBean.getBookRentRequestsByOwnerId();
         model.addAttribute("books_owner", bookBean.getBooksOwnedByCurrentUser());
         model.addAttribute("books_reader", bookBean.getBooksReadByCurrentUser());
         return "my_books";

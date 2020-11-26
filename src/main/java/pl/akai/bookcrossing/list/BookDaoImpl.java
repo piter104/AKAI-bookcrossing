@@ -79,13 +79,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void insertBookUserRequest(int requesterId, int ownerId) {
-        bookMapper.insertBookUserRequest(requesterId, ownerId);
+    public void insertBookUserRequest(BookRentRequest bookRentRequest) {
+        bookMapper.insertBookUserRequest(bookRentRequest);
     }
 
     @Override
-    public List<BookRentRequest> getBookRentRequestsByBookId(int ownerId) {
-        return bookMapper.getBookRentRequestsByBookId(ownerId);
+    public List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId) {
+        return bookMapper.getBookRentRequestsByOwnerId(ownerId);
     }
 
 

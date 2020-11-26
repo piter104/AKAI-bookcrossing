@@ -79,12 +79,13 @@ public class BookBean {
     public void insertBookUserRequest(int bookId) {
         User user = currentUserService.getCurrentUser();
         Book book = bookDao.getBookById(bookId);
-        bookDao.insertBookUserRequest(user.getId(), book.getOwner().getId());
+        BookRentRequest bookRentRequest = new BookRentRequest(user, book);
+        bookDao.insertBookUserRequest(bookRentRequest);
     }
 
-    public List<BookRentRequest> getBookRentRequestsByBookId() {
+    public List<BookRentRequest> getBookRentRequestsByOwnerId() {
         User user = currentUserService.getCurrentUser();
-        return bookDao.getBookRentRequestsByBookId(user.getId());
+        return bookDao.getBookRentRequestsByOwnerId(user.getId());
     }
 
 }

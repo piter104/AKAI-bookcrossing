@@ -38,8 +38,8 @@ public interface BookDaoMapper {
 
     void updateReader(@Param("bookId") int bookId, @Param("readerId") int readerId);
 
-    void insertBookUserRequest(@Param("requesterId") int requesterId, @Param("ownerId") int ownerId);
+    void insertBookUserRequest(@Param("bookRentRequest") BookRentRequest bookRentRequest);
 
-    List<BookRentRequest> getBookRentRequestsByBookId(@Param("ownerId") int ownerId);
+    List<BookRentRequest> getBookRentRequestsByOwnerId(@Param("ownerId") int ownerId);
 
 }

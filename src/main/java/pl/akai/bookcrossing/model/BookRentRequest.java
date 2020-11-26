@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BookRentRequest {
     private User requester;
-    private User owner;
+    private Book book;
 }
