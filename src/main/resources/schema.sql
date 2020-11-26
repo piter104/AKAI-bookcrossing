@@ -46,3 +46,12 @@ CREATE TABLE IF NOT EXISTS tb_book_tags
     FOREIGN KEY (book_id) REFERENCES tb_book (id),
     FOREIGN KEY (tag_id) REFERENCES tb_tag (id)
 );
+
+CREATE TABLE IF NOT EXISTS tb_book_user_request
+(
+    requester_id INT NOT NULL,
+    owner_id     INT NOT NULL,
+    PRIMARY KEY (requester_id, owner_id),
+    FOREIGN KEY (requester_id) REFERENCES tb_user (id),
+    FOREIGN KEY (owner_id) REFERENCES tb_user (id)
+);

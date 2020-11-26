@@ -15,11 +15,20 @@
         <association column="reader_id" property="reader" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <collection column="id" property="tagList" javaType="ArrayList" ofType="Tag" select="getTagsByBookId"/>
+        <collection column="id" property="bookRentRequestList" javaType="ArrayList" ofType="User"
+                    select="getBookRentRequestsByBookId"/>
     </resultMap>
 
     <resultMap id="bookTagsMap" type="Tag">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="baseBookRentRequestMap" type="BookRentRequest">
+        <association column="requester_id" property="requester" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="owner_id" property="owner" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
     </resultMap>
 
     <select id="getAllBooks" resultMap="fullBookMap">
@@ -32,7 +41,6 @@
         FROM tb_book
         WHERE id = #{id}
     </select>
-
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
@@ -92,5 +100,18 @@
         SET reader_id = #{readerId}
         WHERE id = #{bookId};
     </update>
+
+    <insert id="insertBookUserRequest">
+        INSERT INTO tb_book_user_request (requester_id, owner_id)
+        VALUES (#{requesterId}, #{ownerId});
+    </insert>
+
+    <select id="getBookRentRequestsByBookId" resultMap="baseBookRentRequestMap">
+        SELECT tbur.*
+        FROM tb_book_user_request tbur
+                 INNER JOIN tb_user u1 ON (u1.id = tbur.requester_id)
+                 INNER JOIN tb_user u2 on (u2.id = tbur.owner_id)
+        WHERE tbur.owner_id = #{ownerId};
+    </select>
 
 </mapper>

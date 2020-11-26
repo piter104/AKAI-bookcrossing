@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookFormResponse;
+import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Opinion;
 
 import java.util.List;
@@ -35,12 +36,14 @@ public class BookController {
 
     @GetMapping("/book/{id}/rent")
     public String bookRental(@PathVariable(name = "id") Integer bookId) {
-        bookBean.updateReader(bookId);
+        bookBean.insertBookUserRequest(bookId);
+        // bookBean.updateReader(bookId);
         return "redirect:/my-books";
     }
 
     @GetMapping("/my-books")
     public String myBooksList(Model model) {
+        List<BookRentRequest> users = bookBean.getBookRentRequestsByBookId();
         model.addAttribute("books_owner", bookBean.getBooksOwnedByCurrentUser());
         model.addAttribute("books_reader", bookBean.getBooksReadByCurrentUser());
         return "my_books";
