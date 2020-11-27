@@ -42,4 +42,8 @@ public interface BookDaoMapper {
 
     List<BookRentRequest> getBookRentRequestsByOwnerId(@Param("ownerId") int ownerId);
 
+    BookRentRequest getBookRentRequestsById(@Param("id") int id);
+
+    void deleteBookRentRequestsById(@Param("id") int id);
+
 }

@@ -36,4 +36,8 @@ public interface BookDao {
 
     List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId);
 
+    BookRentRequest getBookRentRequestsById(int id);
+
+    void deleteBookRentRequestsById(int id);
+
 }

@@ -71,9 +71,9 @@ public class BookBean {
         return bookDao.getBooksByOwnerId(user.getId());
     }
 
-    public void updateReader(int bookId) {
-        User user = currentUserService.getCurrentUser();
-        bookDao.updateReader(bookId, user.getId());
+    public void updateReader(Integer requestId) {
+        BookRentRequest request = bookDao.getBookRentRequestsById(requestId);
+        bookDao.updateReader(request.getBook().getId(), request.getRequester().getId());
     }
 
     public void insertBookUserRequest(int bookId) {
@@ -88,4 +88,7 @@ public class BookBean {
         return bookDao.getBookRentRequestsByOwnerId(user.getId());
     }
 
+    public void deleteBookRentRequestsById(int id) {
+        bookDao.deleteBookRentRequestsById(id);
+    }
 }

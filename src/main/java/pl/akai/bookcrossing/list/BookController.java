@@ -3,10 +3,7 @@ package pl.akai.bookcrossing.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.BookRentRequest;
@@ -37,9 +34,23 @@ public class BookController {
     @GetMapping("/book/{id}/rent")
     public String bookRental(@PathVariable(name = "id") Integer bookId) {
         bookBean.insertBookUserRequest(bookId);
-        // bookBean.updateReader(bookId);
+        //zmien przeniesienie
         return "redirect:/my-books";
     }
+
+    @GetMapping("/my-books/accept")
+    public String bookRentRequestAccept(@RequestParam(value = "id") Integer requestId) {
+        bookBean.updateReader(requestId);
+        bookBean.deleteBookRentRequestsById(requestId);
+        return "redirect:/my-books";
+    }
+
+    @GetMapping("/my-books/decline")
+    public String bookRentRequestDecline(@RequestParam(value = "id") Integer requestId) {
+        bookBean.deleteBookRentRequestsById(requestId);
+        return "redirect:/my-books";
+    }
+
 
     @GetMapping("/my-books")
     public String myBooksList(Model model) {

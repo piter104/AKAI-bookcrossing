@@ -49,9 +49,10 @@ CREATE TABLE IF NOT EXISTS tb_book_tags
 
 CREATE TABLE IF NOT EXISTS tb_book_user_request
 (
-    requester_id INT NOT NULL,
-    book_id      INT NOT NULL,
-    PRIMARY KEY (requester_id, book_id),
+    id           INT AUTO_INCREMENT NOT NULL,
+    requester_id INT                NOT NULL,
+    book_id      INT                NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (requester_id) REFERENCES tb_user (id),
     FOREIGN KEY (book_id) REFERENCES tb_book (id)
 );

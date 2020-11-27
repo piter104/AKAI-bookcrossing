@@ -10,6 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookRentRequest {
+    private int id;
     private User requester;
     private Book book;
+
+    public BookRentRequest(User requester, Book book) {
+        this.requester = requester;
+        this.book = book;
+    }
 }

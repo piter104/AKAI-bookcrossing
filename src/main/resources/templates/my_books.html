@@ -53,6 +53,25 @@
     </tr>
 </table>
 
+<div>Prośby o wypożyczenie</div>
+<p>Jeżeli zaakceptujesz prośbę, obecny czytelnik się zmieni.</p>
+<table>
+    <tr>
+        <th>Prośba od</th>
+        <th>Tytuł książki</th>
+        <th>Obecny czytelnik</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each="request : ${books_requests}">
+        <td th:text="${request.requester.fullName}">ID</td>
+        <td th:text="${request.book.title}">Tytuł</td>
+        <td th:text="${request.book.reader?.fullName}">Czytelnik</td>
+        <td><a th:href="@{/my-books/accept(id=${request.id})}">akceptuj</a></td>
+        <td><a th:href="@{/my-books/decline(id=${request.id})}">odrzuć</a></td>
+
+    </tr>
+</table>
 
 <a href="/logout">Logout</a>
 <a th:href="@{/book/add}">Dodaj ksiażke</a>

@@ -25,6 +25,7 @@
     </resultMap>
 
     <resultMap id="baseBookRentRequestMap" type="BookRentRequest">
+        <id column="id" property="id" jdbcType="INTEGER"/>
         <association column="requester_id" property="requester" javaType="User"
                      select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
         <association column="book_id" property="book" javaType="Book"
@@ -106,6 +107,14 @@
         VALUES (#{bookRentRequest.requester.id}, #{bookRentRequest.book.id});
     </insert>
 
+    <select id="getBookRentRequestsById" resultMap="baseBookRentRequestMap">
+        SELECT tbur.*
+        FROM tb_book_user_request tbur
+                 INNER JOIN tb_user u ON (u.id = tbur.requester_id)
+                 INNER JOIN tb_book b on (b.id = tbur.book_id)
+        WHERE tbur.id = #{id};
+    </select>
+
     <select id="getBookRentRequestsByOwnerId" resultMap="baseBookRentRequestMap">
         SELECT tbur.*
         FROM tb_book_user_request tbur
@@ -114,4 +123,9 @@
         WHERE b.owner_id = #{ownerId};
     </select>
 
+    <delete id="deleteBookRentRequestsById">
+        DELETE
+        FROM tb_book_user_request tbur
+        WHERE tbur.id = ${id}
+    </delete>
 </mapper>
