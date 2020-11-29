@@ -3,10 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <style>
+        .container{
+            height: 90vh;
+        }
+        body{
+            background-color: rgb(42, 50, 61);
+            color: white;
+        }
+        @media screen and (max-width: 425px){
+            h1{
+                font-size: 2rem;
+            }
+            h2{
+                font-size: 1.5rem;
+                margin-top: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Witaj na Bookcrossingu AKAI</h1>
-<h2>Aby przejśc dalej zaloguj się przy użyciu konta AKAI</h2>
-<div><a th:href="@{/oauth2/authorization/google}">Login with Google</a></div>
+<div class="container text-center d-flex flex-column align-items-center justify-content-center">
+
+    <h1 class="font-weight-bold">Witaj na Bookcrossingu <span class="text-warning">AKAI</span></h1>
+    <h2>Aby przejśc dalej zaloguj się przy użyciu konta AKAI</span></h2>
+
+    <div class="mt-4">
+        <a class="text-info h4" th:href="@{/oauth2/authorization/google}">Login with Google</a>
+    </div>
+
+</div>
 </body>
 </html>

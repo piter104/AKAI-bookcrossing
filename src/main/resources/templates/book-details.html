@@ -2,57 +2,103 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Szczegóły książki</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/book-details.css}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <style>
+        h2:first-child{
+            font-weight: bold;
+        }
+        td{
+            font-size: .9rem;
+        }
+        th{
+            font-size: 1rem;
+        }
+        @media screen and (max-width: 420px){
+            .opinions{
+                width: 100vw;
+                transform: translateX(-48px);
+            }
+        }
+    </style>
 </head>
-<body>
-<h2 th:text="${book.title}"/>
-<p th:text="'Autor: ' + ${book.author}"/>
-<p th:text="'Opis: ' + ${book.description}"/>
-<br>
-<h3>Opinie</h3>
-<table>
-    <tr>
-        <th>Użytkownik</th>
-        <th>Ocena</th>
-        <th>Opis</th>
-    </tr>
-    <tr th:each="opinion : ${opinions}">
-        <td th:text="${opinion.author.fullName}">Użytkownik</td>
-        <td th:text="${opinion.rating}">Ocena</td>
-        <td th:text="${opinion.description}">Opis</td>
-    </tr>
-</table>
-<h3>Dodaj Opinię</h3>
-<form action="#" method="post" th:action="@{/book/{id}(id = ${book.id})}" th:object="${opinion}">
-    <p>Opinia: <select id="rating" name="rating">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-    </select>
-    </p>
-    <p>Komentarz: <textarea cols="33" id="description" name="description" rows="5">
-</textarea></p>
-    <p><input type="submit" value="Dodaj"/> <input type="reset" value="Reset"/></p>
-</form>
-<div th:if="${isSendSuccess}">
-    <p>Udało Ci się dodać opinię!</p>
+<body class="bg-secondary">
+
+
+<div class="container bg-secondary p-5">
+
+    <h2 class="display-5 mb-4" th:text="${book.title}"/>
+    <p class="lead" th:text="'Autor: ' + ${book.author}"/>
+    <p class="lead" th:text="'Opis: ' + ${book.description}"/>
+    <hr class="my-4">
+    <br>
+
+    <div class="box d-flex flex-column justify-content-between flex-lg-row">
+
+        <form action="#" method="post" th:action="@{/book/{id}(id = ${book.id})}" th:object="${opinion}" class="form w-100">
+            <div class="form-group">
+                <h3 class="mb-3">Dodaj opinię</h3>
+
+                    <p class="h5">Ocena:
+                        <select class="form-control col-lg-2 col-md-2 mt-2" id="rating" name="rating">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                    </p>
+
+                    <div class="form-group">
+                        <label class="h5" for="description">Komentarz:</label>
+                        <textarea class="form-control col-lg-8 col-md-6" id="description" name="description" rows="6"></textarea>
+                    </div>
+
+                <div class="inputs">
+                    <input class="btn btn-warning col-md-3 col-lg-2 mb-2 mr-2" type="submit" value="Dodaj"/>
+                    <input class="btn btn-warning col-md-3 col-lg-2 mb-2" type="reset" value="Reset"/>
+                </div>
+            </div>
+        </form>
+
+        <div class="box__box2 w-100">
+            <h3>Opinie</h3>
+            <table class="opinions table table-striped">
+                <tr>
+                    <th>Użytkownik</th>
+                    <th>Ocena</th>
+                    <th>Opis</th>
+                </tr>
+                <tr th:each="opinion : ${opinions}">
+                    <td th:text="${opinion.author.fullName}">Użytkownik</td>
+                    <td th:text="${opinion.rating}">Ocena</td>
+                    <td class="text-break" th:text="${opinion.description}">Opis</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="mb-3" th:if="${isSendSuccess}">
+        <p class="text-success h5">Udało Ci się dodać opinię!</p>
+    </div>
+
+    <table class="tags table">
+        <tr>
+            <th style="padding-left: 0;">Tagi książki</th>
+        </tr>
+        <tr th:each="tag : ${tags}" class="d-inline">
+            <td th:text="${tag?.name}"></td>
+        </tr>
+    </table>
+
+    <a class="text-primary h5" th:href="@{/}">Wroć do strony głównej</a>
 </div>
-<table>
-    <tr>
-        <th>Tagi książki</th>
-    </tr>
-    <tr th:each="tag : ${tags}">
-        <td th:text="${tag?.name}">Tagi książki</td>
-    </tr>
-</table>
-<a th:href="@{/}">Wroć do strony głównej</a>
 </body>
 </html>
