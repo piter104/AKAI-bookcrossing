@@ -35,7 +35,7 @@ public class BookController {
     public String bookRental(@PathVariable(name = "id") Integer bookId) {
         bookBean.insertBookUserRequest(bookId);
         //zmien przeniesienie
-        return "redirect:/my-books";
+        return "redirect:/";
     }
 
     @GetMapping("/my-books/accept")
@@ -86,7 +86,8 @@ public class BookController {
     @PostMapping("/book/{id}")
     public String opinionSubmit(@PathVariable(name = "id") Integer id, @ModelAttribute Opinion opinion, Model model) {
         opinionBean.insertOpinion(opinion, id);
-        return "redirect:/book/" + id;
+        bookDetailsInitialization(model, id, true);
+        return "book-details";
     }
 
     private void bookDetailsInitialization(Model model, Integer id, boolean isSendSuccess) {
