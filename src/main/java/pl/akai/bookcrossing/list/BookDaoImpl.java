@@ -3,6 +3,7 @@ package pl.akai.bookcrossing.list;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
@@ -70,5 +71,30 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void insertBookTag(int bookId, int tagId) {
         bookMapper.insertBookTag(bookId, tagId);
+    }
+
+    @Override
+    public void updateReader(int bookId, int readerId) {
+        bookMapper.updateReader(bookId, readerId);
+    }
+
+    @Override
+    public void insertBookUserRequest(BookRentRequest bookRentRequest) {
+        bookMapper.insertBookUserRequest(bookRentRequest);
+    }
+
+    @Override
+    public List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId) {
+        return bookMapper.getBookRentRequestsByOwnerId(ownerId);
+    }
+
+    @Override
+    public BookRentRequest getBookRentRequestsById(int id) {
+        return bookMapper.getBookRentRequestsById(id);
+    }
+
+    @Override
+    public void deleteBookRentRequestsById(int id) {
+        bookMapper.deleteBookRentRequestsById(id);
     }
 }

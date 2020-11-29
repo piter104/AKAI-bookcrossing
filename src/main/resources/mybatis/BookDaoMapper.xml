@@ -22,6 +22,14 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <resultMap id="baseBookRentRequestMap" type="BookRentRequest">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <association column="requester_id" property="requester" javaType="User"
+                     select="pl.akai.bookcrossing.login.UserDaoMapper.getUserById"/>
+        <association column="book_id" property="book" javaType="Book"
+                     select="pl.akai.bookcrossing.list.BookDaoMapper.getBookById"/>
+    </resultMap>
+
     <select id="getAllBooks" resultMap="fullBookMap">
         SELECT *
         FROM tb_book;
@@ -32,7 +40,6 @@
         FROM tb_book
         WHERE id = #{id}
     </select>
-
 
     <insert id="insertBook" useGeneratedKeys="true" keyProperty="book.id" keyColumn="id">
         INSERT INTO tb_book (title, author, description, owner_id, reader_id)
@@ -87,4 +94,36 @@
         VALUES (#{bookId}, #{tagId});
     </insert>
 
+    <update id="updateReader">
+        UPDATE tb_book
+        SET reader_id = #{readerId}
+        WHERE id = #{bookId};
+    </update>
+
+    <insert id="insertBookUserRequest">
+        INSERT INTO tb_book_user_request (requester_id, book_id)
+        VALUES (#{bookRentRequest.requester.id}, #{bookRentRequest.book.id});
+    </insert>
+
+    <select id="getBookRentRequestsById" resultMap="baseBookRentRequestMap">
+        SELECT tbur.*
+        FROM tb_book_user_request tbur
+                 INNER JOIN tb_user u ON (u.id = tbur.requester_id)
+                 INNER JOIN tb_book b on (b.id = tbur.book_id)
+        WHERE tbur.id = #{id};
+    </select>
+
+    <select id="getBookRentRequestsByOwnerId" resultMap="baseBookRentRequestMap">
+        SELECT tbur.*
+        FROM tb_book_user_request tbur
+                 INNER JOIN tb_user u ON (u.id = tbur.requester_id)
+                 INNER JOIN tb_book b on (b.id = tbur.book_id)
+        WHERE b.owner_id = #{ownerId};
+    </select>
+
+    <delete id="deleteBookRentRequestsById">
+        DELETE
+        FROM tb_book_user_request tbur
+        WHERE tbur.id = ${id}
+    </delete>
 </mapper>

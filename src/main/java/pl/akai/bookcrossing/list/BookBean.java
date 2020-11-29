@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Tag;
 import pl.akai.bookcrossing.model.User;
 
@@ -65,8 +66,29 @@ public class BookBean {
         return bookDao.getBooksByReaderId(user.getId());
     }
 
-    public Object getBooksOwnedByCurrentUser() {
+    public List<Book> getBooksOwnedByCurrentUser() {
         User user = currentUserService.getCurrentUser();
         return bookDao.getBooksByOwnerId(user.getId());
+    }
+
+    public void updateReader(Integer requestId) {
+        BookRentRequest request = bookDao.getBookRentRequestsById(requestId);
+        bookDao.updateReader(request.getBook().getId(), request.getRequester().getId());
+    }
+
+    public void insertBookUserRequest(int bookId) {
+        User user = currentUserService.getCurrentUser();
+        Book book = bookDao.getBookById(bookId);
+        BookRentRequest bookRentRequest = new BookRentRequest(user, book);
+        bookDao.insertBookUserRequest(bookRentRequest);
+    }
+
+    public List<BookRentRequest> getBookRentRequestsByOwnerId() {
+        User user = currentUserService.getCurrentUser();
+        return bookDao.getBookRentRequestsByOwnerId(user.getId());
+    }
+
+    public void deleteBookRentRequestsById(int id) {
+        bookDao.deleteBookRentRequestsById(id);
     }
 }

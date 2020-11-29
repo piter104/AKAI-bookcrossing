@@ -1,6 +1,7 @@
 package pl.akai.bookcrossing.list;
 
 import pl.akai.bookcrossing.model.Book;
+import pl.akai.bookcrossing.model.BookRentRequest;
 import pl.akai.bookcrossing.model.Tag;
 
 import java.util.List;
@@ -28,4 +29,15 @@ public interface BookDao {
     Tag getTagByName(String tagName);
 
     void insertBookTag(int bookId, int tagId);
+
+    void updateReader(int bookId, int readerId);
+
+    void insertBookUserRequest(BookRentRequest bookRentRequest);
+
+    List<BookRentRequest> getBookRentRequestsByOwnerId(int ownerId);
+
+    BookRentRequest getBookRentRequestsById(int id);
+
+    void deleteBookRentRequestsById(int id);
+
 }
