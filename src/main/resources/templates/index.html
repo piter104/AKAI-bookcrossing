@@ -22,7 +22,6 @@
         <th>Właściciel</th>
         <th>Obecny Właściciel</th>
         <th>Szczegóły</th>
-        <th></th>
 
     </tr>
     <tr th:each="book : ${books}">
@@ -33,7 +32,6 @@
         <td th:text="${book.owner?.fullName}">Właściciel</td>
         <td th:text="${book.reader?.fullName}">Obecny Właściciel</td>
         <td><a th:href="@{/book/{id}(id = ${book.id})}">Szczegóły</a></td>
-        <td><a th:href="@{/book/{id}/rent(id = ${book.id})}">Wypożycz</a></td>
     </tr>
 </table>
 

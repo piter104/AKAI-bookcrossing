@@ -1,6 +1,5 @@
 package pl.akai.bookcrossing.list;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Book;
@@ -95,7 +94,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void deleteBookRentRequestsById(@Param("id") int id) {
+    public void deleteBookRentRequestsById(int id) {
         bookMapper.deleteBookRentRequestsById(id);
     }
 }
