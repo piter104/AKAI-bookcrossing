@@ -1,6 +1,6 @@
 package pl.akai.bookcrossing.list;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,18 +12,12 @@ import pl.akai.bookcrossing.model.Opinion;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookBean bookBean;
     private final OpinionBean opinionBean;
     private final TagBean tagBean;
-
-    @Autowired
-    public BookController(BookBean bookBean, OpinionBean opinionBean, TagBean tagBean) {
-        this.bookBean = bookBean;
-        this.opinionBean = opinionBean;
-        this.tagBean = tagBean;
-    }
 
     @GetMapping("/")
     public String booksList(Model model) {

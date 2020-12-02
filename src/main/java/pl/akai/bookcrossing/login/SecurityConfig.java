@@ -1,12 +1,13 @@
 package pl.akai.bookcrossing.login;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String LOGIN_PAGE = "/login";
@@ -15,12 +16,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String MAIN_PAGE = "/";
     private final CustomOAuth2UserService oAuth2UserService;
     private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
-
-    @Autowired
-    public SecurityConfig(CustomOAuth2UserService oAuth2UserService, OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler) {
-        this.oAuth2UserService = oAuth2UserService;
-        this.oAuth2LoginSuccessHandler = oAuth2LoginSuccessHandler;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

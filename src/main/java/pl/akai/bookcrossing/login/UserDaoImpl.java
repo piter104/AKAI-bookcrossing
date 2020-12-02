@@ -1,18 +1,19 @@
 package pl.akai.bookcrossing.login;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.User;
 
 @Repository
+@RequiredArgsConstructor
 public class UserDaoImpl implements UserDao {
 
     private final UserDaoMapper userMapper;
 
-    @Autowired
-    UserDaoImpl(UserDaoMapper userMapper) {
-        this.userMapper = userMapper;
-    }
+//    @Autowired
+//    UserDaoImpl(UserDaoMapper userMapper) {
+//        this.userMapper = userMapper;
+//    }
 
     @Override
     public User getUserById(int userId) {
