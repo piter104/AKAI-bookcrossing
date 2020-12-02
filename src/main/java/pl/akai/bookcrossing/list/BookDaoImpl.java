@@ -14,11 +14,6 @@ public class BookDaoImpl implements BookDao {
 
     private final BookDaoMapper bookMapper;
 
-//    @Autowired
-//    BookDaoImpl(BookDaoMapper bookMapper) {
-//        this.bookMapper = bookMapper;
-//    }
-
     @Override
     public Book getBookById(int bookId) {
         return bookMapper.getBookById(bookId);

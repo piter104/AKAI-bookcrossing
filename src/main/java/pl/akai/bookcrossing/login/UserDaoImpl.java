@@ -10,11 +10,6 @@ public class UserDaoImpl implements UserDao {
 
     private final UserDaoMapper userMapper;
 
-//    @Autowired
-//    UserDaoImpl(UserDaoMapper userMapper) {
-//        this.userMapper = userMapper;
-//    }
-
     @Override
     public User getUserById(int userId) {
         return userMapper.getUserById(userId);
