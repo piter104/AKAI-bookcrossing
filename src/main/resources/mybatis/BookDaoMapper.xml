@@ -7,6 +7,7 @@
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="author" property="author" jdbcType="VARCHAR"/>
         <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="available" property="isAvailable" jdbcType="BOOLEAN"/>
     </resultMap>
 
     <resultMap id="fullBookMap" extends="baseBookMap" type="Book">

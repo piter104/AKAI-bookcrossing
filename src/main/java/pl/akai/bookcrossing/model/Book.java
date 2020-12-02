@@ -18,4 +18,5 @@ public class Book {
     private User owner;
     private User reader;
     private List<Tag> tagList = new ArrayList<>();
+    private boolean isAvailable;
 }
