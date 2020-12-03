@@ -1,6 +1,6 @@
 package pl.akai.bookcrossing.list;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Opinion;
@@ -10,16 +10,11 @@ import pl.akai.bookcrossing.opinion.OpinionDao;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class OpinionBean {
 
     private final OpinionDao opinionDao;
     private final CurrentUserService currentUserService;
-
-    @Autowired
-    public OpinionBean(OpinionDao opinionDao, CurrentUserService currentUserService) {
-        this.opinionDao = opinionDao;
-        this.currentUserService = currentUserService;
-    }
 
     public void insertOpinion(Opinion opinion, Integer bookId) {
         User user = currentUserService.getCurrentUser();

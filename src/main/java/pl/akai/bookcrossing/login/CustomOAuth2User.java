@@ -1,18 +1,16 @@
 package pl.akai.bookcrossing.login;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
 import java.util.Map;
 
+@RequiredArgsConstructor
 public class CustomOAuth2User implements OAuth2User {
 
     private final OAuth2User oAuth2User;
-
-    public CustomOAuth2User(OAuth2User oAuth2User) {
-        this.oAuth2User = oAuth2User;
-    }
 
     @Override
     public Map<String, Object> getAttributes() {

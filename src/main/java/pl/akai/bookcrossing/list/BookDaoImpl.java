@@ -1,6 +1,6 @@
 package pl.akai.bookcrossing.list;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookRentRequest;
@@ -9,14 +9,10 @@ import pl.akai.bookcrossing.model.Tag;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class BookDaoImpl implements BookDao {
 
     private final BookDaoMapper bookMapper;
-
-    @Autowired
-    BookDaoImpl(BookDaoMapper bookMapper) {
-        this.bookMapper = bookMapper;
-    }
 
     @Override
     public Book getBookById(int bookId) {

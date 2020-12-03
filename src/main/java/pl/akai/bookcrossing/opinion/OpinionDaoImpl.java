@@ -1,5 +1,6 @@
 package pl.akai.bookcrossing.opinion;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.akai.bookcrossing.model.Opinion;
@@ -7,14 +8,10 @@ import pl.akai.bookcrossing.model.Opinion;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class OpinionDaoImpl implements OpinionDao {
 
     private final OpinionDaoMapper opinionMapper;
-
-    @Autowired
-    public OpinionDaoImpl(OpinionDaoMapper opinionMapper) {
-        this.opinionMapper = opinionMapper;
-    }
 
     @Override
     public List<Opinion> getOpinionsByBookId(int bookId) {

@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS tb_book
     description TEXT,
     owner_id    INT,
     reader_id   INT,
+    available   BOOLEAN,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES tb_user (id),
     FOREIGN KEY (reader_id) REFERENCES tb_user (id)

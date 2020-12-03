@@ -1,5 +1,6 @@
 package pl.akai.bookcrossing.list;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.Tag;
@@ -7,12 +8,10 @@ import pl.akai.bookcrossing.model.Tag;
 import java.util.Set;
 
 @Component
+@RequiredArgsConstructor
 public class TagBean {
-    private final BookBean bookBean;
 
-    public TagBean(BookBean bookBean) {
-        this.bookBean = bookBean;
-    }
+    private final BookBean bookBean;
 
     public void insertNewTags(BookFormResponse bookFormResponse) {
         String newTags = bookFormResponse.getNewTagsNames();

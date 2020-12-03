@@ -1,6 +1,6 @@
 package pl.akai.bookcrossing.list;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.akai.bookcrossing.login.CurrentUserService;
 import pl.akai.bookcrossing.model.Book;
@@ -11,17 +11,11 @@ import pl.akai.bookcrossing.model.User;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class BookBean {
 
     private final BookDao bookDao;
     private final CurrentUserService currentUserService;
-
-
-    @Autowired
-    public BookBean(BookDao bookDao, CurrentUserService currentUserService) {
-        this.currentUserService = currentUserService;
-        this.bookDao = bookDao;
-    }
 
     public void insertBook(Book book) {
         User user = currentUserService.getCurrentUser();
@@ -77,9 +71,10 @@ public class BookBean {
     }
 
     public void insertBookUserRequest(int bookId) {
-        User user = currentUserService.getCurrentUser();
-        Book book = bookDao.getBookById(bookId);
-        BookRentRequest bookRentRequest = new BookRentRequest(user, book);
+        BookRentRequest bookRentRequest = BookRentRequest.builder()
+                .requester(currentUserService.getCurrentUser())
+                .book(bookDao.getBookById(bookId))
+                .build();
         bookDao.insertBookUserRequest(bookRentRequest);
     }
 
