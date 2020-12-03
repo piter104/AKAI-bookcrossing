@@ -40,4 +40,6 @@ public interface BookDao {
 
     void deleteBookRentRequestsById(int id);
 
+    BookRentRequest getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId);
+
 }

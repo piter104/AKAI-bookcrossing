@@ -93,4 +93,10 @@ public class BookDaoImpl implements BookDao {
     public void deleteBookRentRequestsById(int id) {
         bookMapper.deleteBookRentRequestsById(id);
     }
+
+    @Override
+    public BookRentRequest getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId) {
+        return bookMapper.getBookRentRequestByOwnerAndBookIds(requesterId, bookId);
+    }
+
 }

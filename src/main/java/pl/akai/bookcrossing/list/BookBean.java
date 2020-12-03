@@ -75,7 +75,8 @@ public class BookBean {
                 .requester(currentUserService.getCurrentUser())
                 .book(bookDao.getBookById(bookId))
                 .build();
-        bookDao.insertBookUserRequest(bookRentRequest);
+        if (getBookRentRequestByOwnerAndBookIds(bookRentRequest) == null)
+            bookDao.insertBookUserRequest(bookRentRequest);
     }
 
     public List<BookRentRequest> getBookRentRequestsByOwnerId() {
@@ -85,5 +86,16 @@ public class BookBean {
 
     public void deleteBookRentRequestsById(int id) {
         bookDao.deleteBookRentRequestsById(id);
+    }
+
+    BookRentRequest getBookRentRequestByOwnerAndBookIds(BookRentRequest bookRentRequest) {
+        return bookDao.getBookRentRequestByOwnerAndBookIds(
+                bookRentRequest
+                        .getRequester()
+                        .getId(),
+                bookRentRequest
+                        .getBook()
+                        .getId())
+                ;
     }
 }
