@@ -101,6 +101,12 @@
         WHERE id = #{bookId};
     </update>
 
+    <update id="updateAvailable">
+        UPDATE tb_book
+        SET available = #{available}
+        WHERE id = #{bookId};
+    </update>
+
     <insert id="insertBookUserRequest">
         INSERT INTO tb_book_user_request (requester_id, book_id)
         VALUES (#{bookRentRequest.requester.id}, #{bookRentRequest.book.id});

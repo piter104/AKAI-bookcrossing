@@ -99,4 +99,9 @@ public class BookDaoImpl implements BookDao {
         return bookMapper.getBookRentRequestByOwnerAndBookIds(requesterId, bookId);
     }
 
+    @Override
+    public void updateAvailable(int bookId, boolean available) {
+        bookMapper.updateAvailable(bookId, available);
+    }
+
 }

@@ -98,4 +98,9 @@ public class BookBean {
                         .getId())
                 ;
     }
+
+    public void updateAvailable(int requestId, boolean available) {
+        BookRentRequest request = bookDao.getBookRentRequestsById(requestId);
+        bookDao.updateAvailable(request.getBook().getId(), available);
+    }
 }

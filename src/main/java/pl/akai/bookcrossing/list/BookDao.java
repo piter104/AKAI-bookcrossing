@@ -42,4 +42,6 @@ public interface BookDao {
 
     BookRentRequest getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId);
 
+    void updateAvailable(int bookId, boolean available);
+
 }

@@ -1,7 +1,6 @@
 package pl.akai.bookcrossing.list;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.akai.bookcrossing.model.Book;
@@ -11,7 +10,7 @@ import pl.akai.bookcrossing.model.Opinion;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class BookController {
 
@@ -24,27 +23,6 @@ public class BookController {
         model.addAttribute("books", bookBean.getAllBooks());
         return "index";
     }
-
-    @GetMapping("/book/{id}/rent")
-    public String bookRental(@PathVariable(name = "id") Integer bookId) {
-        bookBean.insertBookUserRequest(bookId);
-        //zmien przeniesienie
-        return "redirect:/";
-    }
-
-    @GetMapping("/my-books/accept")
-    public String bookRentRequestAccept(@RequestParam(value = "id") Integer requestId) {
-        bookBean.updateReader(requestId);
-        bookBean.deleteBookRentRequestsById(requestId);
-        return "redirect:/my-books";
-    }
-
-    @GetMapping("/my-books/decline")
-    public String bookRentRequestDecline(@RequestParam(value = "id") Integer requestId) {
-        bookBean.deleteBookRentRequestsById(requestId);
-        return "redirect:/my-books";
-    }
-
 
     @GetMapping("/my-books")
     public String myBooksList(Model model) {
