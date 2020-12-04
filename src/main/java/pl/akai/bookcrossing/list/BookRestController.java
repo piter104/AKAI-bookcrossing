@@ -1,11 +1,11 @@
 package pl.akai.bookcrossing.list;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookRestController {
 
     private final BookBean bookBean;
