@@ -95,8 +95,7 @@ public class BookBean {
                         .getId(),
                 bookRentRequest
                         .getBook()
-                        .getId())
-                ;
+                        .getId());
     }
 
     public void updateAvailable(int requestId, boolean available) {
