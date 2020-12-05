@@ -128,7 +128,7 @@
         WHERE b.owner_id = #{ownerId};
     </select>
 
-    <select id="getBookRentRequestByOwnerAndBookIds">
+    <select id="getBookRentRequestByOwnerAndBookIds" resultType="Integer">
         SELECT count(*)
         FROM tb_book_user_request tbur
         WHERE tbur.requester_id = #{requesterId}

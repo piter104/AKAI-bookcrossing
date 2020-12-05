@@ -3,6 +3,7 @@ package pl.akai.bookcrossing.list;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.akai.bookcrossing.model.Book;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,10 +18,11 @@ public class BookRestController {
         bookBean.insertBookUserRequest(bookId);
     }
 
-    @RequestMapping("/my-books/end-rent")
+    @RequestMapping("/my-books/available-negation")
     @ResponseStatus(HttpStatus.OK)
-    public void bookRentRequestEnd(@RequestParam(value = "id") Integer bookId) {
-        bookBean.updateIsAvailable(bookId, true);
+    public void bookIsAvailableNegation(@RequestParam(value = "id") Integer bookId) {
+        Book book = bookDao.getBookById(bookId);
+        bookBean.updateIsAvailable(bookId, !book.isAvailable());
     }
 
     @RequestMapping("/my-books/accept")
