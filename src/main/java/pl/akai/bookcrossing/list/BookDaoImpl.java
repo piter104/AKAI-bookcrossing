@@ -95,7 +95,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public BookRentRequest getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId) {
+    public Integer getBookRentRequestByOwnerAndBookIds(int requesterId, int bookId) {
         return bookMapper.getBookRentRequestByOwnerAndBookIds(requesterId, bookId);
     }
 

@@ -128,11 +128,9 @@
         WHERE b.owner_id = #{ownerId};
     </select>
 
-    <select id="getBookRentRequestByOwnerAndBookIds" resultMap="baseBookRentRequestMap">
-        SELECT tbur.*
+    <select id="getBookRentRequestByOwnerAndBookIds">
+        SELECT count(*)
         FROM tb_book_user_request tbur
-                 INNER JOIN tb_user u ON (u.id = tbur.requester_id)
-                 INNER JOIN tb_book b on (b.id = tbur.book_id)
         WHERE tbur.requester_id = #{requesterId}
           AND tbur.book_id = #{bookId};
     </select>
