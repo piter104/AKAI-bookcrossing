@@ -79,8 +79,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 py-1 py-lg-0 mb-4">
     <div class="container-md py-lg-0 py-2">
 
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 189.211 211.778" enable-background="new 0 0 189.211 211.778"
-            xml:space="preserve">
+        <svg enable-background="new 0 0 189.211 211.778" id="Layer_1" version="1.1" viewBox="0 0 189.211 211.778"
+             x="0px" xml:space="preserve"
+             xmlns="http://www.w3.org/2000/svg"
+             y="0px">
                 <g>
                     <path fill-rule="evenodd" clip-rule="evenodd" fill="#FAA21B" d="M45.2,21.895c24.751,0,44.853,19.896,45.192,44.566H90.4v0.634
                         v45.2H45.2h-0.517v-0.006C19.958,112.011,0,91.886,0,67.095C0,42.131,20.237,21.895,45.2,21.895L45.2,21.895z M45.102,40.259
@@ -114,8 +116,9 @@
             </div>
 
             <div class="d-flex justify-content-between box">
-                <form class="form-inline mb-2">
-                    <input class="form-control mr-2" type="search" placeholder="Szukaj..." aria-label="Search">
+                <form action="#" class="form-inline mb-2" method="post" th:action="@{/}">
+                    <input aria-label="Search" class="form-control mr-2" id="keyword" name="keyword"
+                           placeholder="Szukaj..." type="search">
                     <button class="btn btn-outline-success" type="submit">Szukaj</button>
                 </form>
 

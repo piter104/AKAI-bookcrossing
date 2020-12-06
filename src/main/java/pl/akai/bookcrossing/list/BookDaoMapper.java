@@ -49,4 +49,6 @@ public interface BookDaoMapper {
     Integer getBookRentRequestByOwnerAndBookIds(@Param("requesterId") int requesterId, @Param("bookId") int bookId);
 
     void updateAvailable(@Param("bookId") int bookId, @Param("available") boolean available);
+
+    List<Book> filterBooksByKeyword(@Param("keyword") String keyword);
 }

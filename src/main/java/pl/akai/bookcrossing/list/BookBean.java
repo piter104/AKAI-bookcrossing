@@ -108,4 +108,8 @@ public class BookBean {
         updateReader(requestId);
         deleteBookRentRequestsById(requestId);
     }
+
+    public List<Book> filterBooksByKeyword(String keyword) {
+        return bookDao.filterBooksByKeyword(keyword);
+    }
 }

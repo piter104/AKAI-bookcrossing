@@ -73,6 +73,13 @@
         WHERE bt.tag_id = #{id};
     </select>
 
+    <select id="filterBooksByKeyword" resultMap="fullBookMap">
+        SELECT *
+        FROM tb_book
+        WHERE author LIKE concat('%', #{keyword}, '%')
+           OR title LIKE concat('%', #{keyword}, '%');
+    </select>
+
     <insert id="insertTag" useGeneratedKeys="true" keyProperty="tag.id" keyColumn="id">
         INSERT INTO tb_tag (name)
         VALUES (upper(#{tag.name}));
