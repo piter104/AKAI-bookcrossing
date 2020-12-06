@@ -74,10 +74,13 @@
     </select>
 
     <select id="filterBooksByKeyword" resultMap="fullBookMap">
-        SELECT *
-        FROM tb_book
+        SELECT b.*
+        FROM tb_book b
+                 LEFT JOIN tb_book_tags tbt on b.id = tbt.book_id
+                 LEFT JOIN tb_tag tt on tbt.tag_id = tt.id
         WHERE author LIKE concat('%', #{keyword}, '%')
-           OR title LIKE concat('%', #{keyword}, '%');
+           OR title LIKE concat('%', #{keyword}, '%')
+           OR name LIKE concat('%', #{keyword}, '%');
     </select>
 
     <insert id="insertTag" useGeneratedKeys="true" keyProperty="tag.id" keyColumn="id">
