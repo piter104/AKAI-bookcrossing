@@ -176,6 +176,14 @@
 
                 if (tname.includes(value) || aname.includes(value)) {
                     filteredData.push(data[i]);
+                } else {
+                    for (var j = 0; j < data[i].tagList.length; j++) {
+                        var tagName = data[i].tagList[j].name.toLowerCase();
+                        if (tagName.includes(value)) {
+                            filteredData.push(data[i]);
+                            break;
+                        }
+                    }
                 }
             }
             return filteredData;
