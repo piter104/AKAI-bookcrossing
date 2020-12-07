@@ -3,7 +3,10 @@ package pl.akai.bookcrossing.list;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.akai.bookcrossing.model.Book;
 import pl.akai.bookcrossing.model.BookFormResponse;
 import pl.akai.bookcrossing.model.BookRentRequest;
@@ -22,13 +25,6 @@ public class BookController {
     @GetMapping("/")
     public String booksList(Model model) {
         model.addAttribute("books", bookBean.getAllBooks());
-        return "index";
-    }
-
-    @PostMapping("/")
-    public String bookFilteredList(Model model, @RequestParam(name = "keyword") String keyword) {
-        List<Book> books = bookBean.filterBooksByKeyword(keyword);
-        model.addAttribute("books", books);
         return "index";
     }
 
