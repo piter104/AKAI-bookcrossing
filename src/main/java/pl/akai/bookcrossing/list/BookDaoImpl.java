@@ -103,10 +103,4 @@ public class BookDaoImpl implements BookDao {
     public void updateAvailable(int bookId, boolean available) {
         bookMapper.updateAvailable(bookId, available);
     }
-
-    @Override
-    public List<Book> filterBooksByKeyword(String keyword) {
-        return bookMapper.filterBooksByKeyword(keyword);
-    }
-
 }

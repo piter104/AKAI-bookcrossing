@@ -44,5 +44,4 @@ public interface BookDao {
 
     void updateAvailable(int bookId, boolean available);
 
-    List<Book> filterBooksByKeyword(String keyword);
 }
